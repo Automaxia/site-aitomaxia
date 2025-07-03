@@ -1,0 +1,33 @@
+// Ionic Variables and Theming. For more info, please see:
+// http://ionicframework.com/docs/theming/
+
+/** Ionic CSS Variables **/
+:root {
+  /* Forçar utilização do tema em alguns androids */
+  color-scheme: unset !important;
+
+  /* Fontes do sistema */
+  --inter-font-family: 'Inter', sans-serif;
+  --roboto-font-family: 'Roboto', sans-serif;
+  --ion-font-family: var(--inter-font-family);
+
+  /* Primária */
+  --primary-0: #FDB827;
+  --primary-1: #F7C356;
+  --primary-2: #F4D083;
+  --primary-3: #F2DCB0;
+
+  /* Escala de Cinza */
+  --offwhite: #F2ECE0;
+  --grayscale-0: #D9D9D9;
+  --grayscale-1: #BEB6AB;
+  --grayscale-2: #8B7F76;
+  --grayscale-3: #574940;
+  --grayscale-black: #130A06;
+
+  /* Secundária */
+  --secondary-0: #21479B;
+  --secondary-1: #223872;
+  --secondary-2: #222B50;
+  --secondary-3: #222B50;
+}

@@ -1,0 +1,49 @@
+<div class="drawer">
+  <div class="drawer-content flex flex-col">
+    <!-- Navbar Desktop -->
+    <div class="w-full navbar !p-4 flex items-center justify-between bg-transparent mobile:h-[60px]">
+      <div class=" desktop:hidden">
+        <label for="menu-mobile" class="btn btn-ghost drawer-button p-0 ">
+          <ion-icon name="c-menu" class="text-3xl text-primary-3"></ion-icon>
+        </label>
+
+      </div>
+      <div class="flex items-center w-full desktop:px-4 justify-between mobile:mb-2">
+        <ion-img src="assets/img/automaxia-logo.png" class="w-[180px] desktop:w-[270px] mobile:ml-4"></ion-img>
+
+        <ul class="menu menu-horizontal mobile:hidden py-0">
+          <button
+            *ngFor="let menu of menuConfig"
+            (click)="navigateTo(menu.route)"
+            [class.!underline]="activeRoute === menu.route"
+            [ngClass]="{'text-offwhite': activeRoute === menu.route,
+                        'btn btn-link mobile:hidden normal-case font-roboto text-primary-3 text-base font-bold tracking-[0.2px] leading-7 no-underline hover:no-underline hover:text-offwhite': true
+    }">
+            {{ menu.title }}
+          </button>
+        </ul>
+        <!--</div>-->
+
+
+        <div class="social-media justify-end flex text-4xl mobile:text-2xl mobile:mt-2">
+          <ion-icon name="c-twitter"></ion-icon>
+          <ion-icon name="c-facebook"></ion-icon>
+          <ion-icon name="c-linkedin"></ion-icon>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <input id="menu-mobile" type="checkbox" class="drawer-toggle"/>
+  <div class="drawer-side z-10 bg-transparent text-primary-3">
+    <label for="menu-mobile" class="drawer-overlay"></label>
+    <ul class="menu p-4 w-80 min-h-full bg-base-200">
+      <!-- Conteúdo sidebar menu -->
+      <li *ngFor="let menu of menuConfig"><a (click)="navigateTo(menu.route)">{{ menu.title }}</a></li>
+    </ul>
+
+  </div>
+</div>
+
+

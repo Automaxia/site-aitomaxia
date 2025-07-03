@@ -1,0 +1,173 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Estilos Tailwind */
+@tailwind base;
+@tailwind components;
+@font-face {
+  font-family: "geomanistblack";
+  src: url("assets/fonts/geomanist-black-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-black-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistbold";
+  src: url("assets/fonts/geomanist-bold-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistbook";
+  src: url("assets/fonts/geomanist-book-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-book-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistextralight";
+  src: url("assets/fonts/geomanist-extralight-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-extralight-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistlight";
+  src: url("assets/fonts/geomanist-light-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistmedium";
+  src: url("assets/fonts/geomanist-medium-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-medium-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistregular";
+  src: url("assets/fonts/geomanist-regular-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistthin";
+  src: url("assets/fonts/geomanist-thin-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-thin-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "geomanistultra";
+  src: url("assets/fonts/geomanist-ultra-webfont.woff2") format("woff2"),
+  url("assets/fonts/geomanist-ultra-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@tailwind utilities;
+
+* {
+  font-family: "geomanistregular", sans-serif;
+}
+
+strong {
+  font-family: "geomanistbold", sans-serif;
+}
+
+b {
+  font-family: "geomanistblack", sans-serif;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--grayscale-black);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ion-content {
+  --background: var(--grayscale-black);
+  //--padding-start: 32px;
+  //--padding-end: 32px;
+  //--padding-top: 16px;
+  //--padding-bottom: 16px;
+
+  //@media (max-width: 768px) {
+  //  --padding-start: 16px !important;
+  //  --padding-end: 16px !important;
+  //}
+}
+
+.automaxia-input {
+  ion-item {
+    --background: var(--grayscale-black);
+
+    ion-input {
+      --background: var(--grayscale-black);
+      --color: #F2ECE0;
+      border-bottom: 1px solid #F2ECE0;
+    }
+  }
+}
+
+.automaxia-btn {
+  --background: #F2ECE0;
+  --color: var(--grayscale-black);
+  margin: 0;
+  font-weight: 400;
+  letter-spacing: 5.4px;
+  padding: 16px;
+
+}
+
+swiper-container {
+  --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #cccccc);
+  --swiper-pagination-color: var(--primary-3);
+  --swiper-theme-color: var(--primary-3);
+  --swiper-navigation-size: 16px;
+}

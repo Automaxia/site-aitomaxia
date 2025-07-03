@@ -1,0 +1,7 @@
+{
+  "name": "automaxia-web",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

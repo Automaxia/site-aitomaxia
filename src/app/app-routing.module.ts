@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'termos',
     loadChildren: () => import('./termos/termos.module').then( m => m.TermosPageModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 

@@ -4,6 +4,7 @@ import { ROUTE } from '../shared/constants/route';
 import { Router } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 import { AnalyticsService } from '../shared/services/analytics.service';
+import { SeoService } from '../shared/services/seo.service';
 
 register();
 
@@ -17,9 +18,11 @@ export class AppComponent {
 
 	constructor(private responsiveService: ResponsiveService,
 	            private router: Router,
-	            analytics: AnalyticsService) {
+	            analytics: AnalyticsService,
+	            seo: SeoService) {
 		responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
 		analytics.iniciar();
+		seo.iniciar();
 	}
 
 	inicio() {

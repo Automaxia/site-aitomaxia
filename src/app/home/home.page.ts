@@ -303,90 +303,90 @@ export class HomePage {
       titulo: 'RPA',
       subTitulo: 'Hiperautomação',
       descricao: 'Nós vamos criar uma revolução para o seu negócio, potencializar a inteligência humana, e deixar o trabalho repetitivo e burocrático para nossos robôs.',
-      bgImg: `bg-[url('assets/img/servicos-1.png')]`
+      bgImg: `bg-[url('assets/img/servicos-1.webp')]`
     },
     {
       titulo: 'Processos',
       subTitulo: 'Descoberta e Mineração de Processos',
       descricao: 'Somos especialistas na identificação e classificação de potenciais processos para automação, com metodologia testada e aprovada no mercado.',
-      bgImg: `bg-[url('assets/img/servicos-2.png')]`
+      bgImg: `bg-[url('assets/img/servicos-2.webp')]`
     },
     {
       titulo: 'Dados',
       subTitulo: 'IA, Business intelligence, Pipeline de dados',
       descricao: 'Sem modismos, estamos prontos e com muito conhecimento para elevar o seu negócio com IA com as melhores tecnologias.',
-      bgImg: `bg-[url('assets/img/servicos-3.png')]`
+      bgImg: `bg-[url('assets/img/servicos-3.webp')]`
     },
     {
       titulo: 'LGPD',
       subTitulo: 'Governança, integração e Privacidade (LGPD) dos seus dados.',
       descricao: 'Parte importante de projetos de hiperautomação e de IA, somos especialistas em Governança, integração e enriquecimento de dados, além de cuidar da segurança das suas informações.',
-      bgImg: `bg-[url('assets/img/servicos-4.png')]`
+      bgImg: `bg-[url('assets/img/servicos-4.webp')]`
     },
     {
       titulo: 'Observabilidade',
       subTitulo: 'Performance de aplicações e estruturas de AIOPS.',
       descricao: 'Performance é o nosso norte, somos especialistas em observar e direcionar suas aplicações, infraestrutura, para maximizar seu negócio.',
-      bgImg: `bg-[url('assets/img/servicos-5.png')]`
+      bgImg: `bg-[url('assets/img/servicos-5.webp')]`
     },
     {
       titulo: 'Primeiro Atendimento IA',
       subTitulo: 'Chat integrado com WhatsApp Business e IA',
       descricao: 'Automatizamos o primeiro contato com seus clientes usando IA generativa integrada ao WhatsApp e Instagram, realizando triagens, coletas de dados e integrações com seus sistemas internos.',
-      bgImg: `bg-[url('assets/img/servicos-6.png')]`
+      bgImg: `bg-[url('assets/img/servicos-6.webp')]`
     },
     {
       titulo: 'Dashboards Generativos',
       subTitulo: 'IA para geração automática de insights',
       descricao: 'Utilizamos IA para gerar grafos automaticamente e extrair insights dos seus dados, criando dashboards inteligentes que se adaptam às suas necessidades de negócio.',
-      bgImg: `bg-[url('assets/img/servicos-7.png')]`
+      bgImg: `bg-[url('assets/img/servicos-7.webp')]`
     },
     {
       titulo: 'CortexAI',
       subTitulo: 'Fazenda de Agentes de IA',
       descricao: 'Ambiente dedicado que executam tarefas autônomas ou colaborativas em processos de negócios, combinando IA generativa, machine learning e automação para ganho de escala, velocidade e inteligência operacional.',
-      bgImg: `bg-[url('assets/img/servicos-8.png')]`
+      bgImg: `bg-[url('assets/img/servicos-8.webp')]`
     },
     {
       titulo: 'DataVibe AI',
       subTitulo: 'Treinamento de Modelos por Qualquer Pessoa',
       descricao: 'Plataforma que democratiza a ciência de dados ao permitir que qualquer pessoa — com ou sem experiência técnica — desenvolva modelos de IA prontos para uso em minutos.',
-      bgImg: `bg-[url('assets/img/servicos-9.png')]`
+      bgImg: `bg-[url('assets/img/servicos-9.webp')]`
     }
   ];
 
   parceirosInfo = [
     {
       nome: 'Python',
-      icone: 'python.png',
+      icone: 'python.webp',
     },
     {
       nome: 'Apache Airflow',
-      icone: 'apache-airflow.png',
+      icone: 'apache-airflow.webp',
     },
     {
       nome: 'Microsoft',
-      icone: 'microsoft.png',
+      icone: 'microsoft.webp',
     },
     {
       nome: 'H2o AI',
-      icone: 'h2oai.png',
+      icone: 'h2oai.webp',
     },
     {
       nome: 'Amazon Cloud Services',
-      icone: 'amazon.png',
+      icone: 'amazon.webp',
     },
     {
       nome: 'OpenAI',
-      icone: 'openai.png',
+      icone: 'openai.webp',
     },
     {
       nome: 'LangChain',
-      icone: 'langchain.png',
+      icone: 'langchain.webp',
     },
     {
       nome: 'LangGraph',
-      icone: 'langgraph.png',
+      icone: 'langgraph.webp',
     },
   ];
 
@@ -395,37 +395,37 @@ export class HomePage {
       titulo: 'Automaxia RPA',
       subTitulo: 'Plataforma de Hiperautomação',
       descricao: 'Abordagem avançada que envolve a combinação de várias tecnologias de automação, inteligência artificial e ferramentas de processamento de dados para automatizar, otimizar e escalar processos em sua organização.',
-      bgImg: `bg-[url('assets/img/produto-1.png')]`
+      bgImg: `bg-[url('assets/img/produto-1.webp')]`
     },
     {
       titulo: 'Botanalytics (Datalake)',
       subTitulo: 'Modulo de Analise',
       descricao: 'Envolve várias práticas e tecnologias para garantir que os dados coletados e gerados por sua organização sejam efetivamente utilizados para otimizar operações e impulsionar o crescimento do negócio.',
-      bgImg: `bg-[url('assets/img/produto-2.png')]`
+      bgImg: `bg-[url('assets/img/produto-2.webp')]`
     },
     {
       titulo: 'Botfarm',
       subTitulo: 'Fazenda de robôs',
       descricao: 'Uma maneira poderosa de otimizar operações, reduzir custos e melhorar a experiência do cliente, ao mesmo tempo em que se mantém ágil e adaptável às mudanças nas demandas dos robôs.',
-      bgImg: `bg-[url('assets/img/produto-3.png')]`
+      bgImg: `bg-[url('assets/img/produto-3.webp')]`
     },
     {
       titulo: 'Talkcare.ai',
       subTitulo: 'Assistente Inteligente de Atendimento',
       descricao: 'Plataforma que integra IA generativa, RPA e mensageria para automatizar o primeiro contato com clientes em canais como WhatsApp e Instagram, realizando triagens, coletas de dados e integrações com sistemas internos para acelerar agendamentos, cadastros e respostas a perguntas frequentes.',
-      bgImg: `bg-[url('assets/img/produto-4.png')]`
+      bgImg: `bg-[url('assets/img/produto-4.webp')]`
     },
     {
       titulo: 'CortexAI',
       subTitulo: 'Fazenda de Agentes de IA',
       descricao: 'Ambiente dedicado à criação, orquestração e operação de múltiplos agentes inteligentes prontos para uso, que executam tarefas autônomas ou colaborativas em processos de negócios, combinando IA generativa, machine learning e automação para ganho de escala, velocidade e inteligência operacional.',
-      bgImg: `bg-[url('assets/img/produto-5.png')]`
+      bgImg: `bg-[url('assets/img/produto-5.webp')]`
     },
     {
       titulo: 'DataVibe AI',
       subTitulo: 'Treinamento de Modelos por Qualquer Pessoa',
       descricao: 'Plataforma que democratiza a ciência de dados ao permitir que qualquer pessoa — com ou sem experiência técnica — desenvolva modelos de IA prontos para uso em minutos. Com interface guiada por IA generativa, o DataVibe conduz todas as etapas do processo analítico, da ingestão de dados à explicabilidade, de forma simples, rápida e poderosa.',
-      bgImg: `bg-[url('assets/img/produto-6.png')]`
+      bgImg: `bg-[url('assets/img/produto-6.webp')]`
     },
   ];
 

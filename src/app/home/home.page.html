@@ -333,6 +333,10 @@
             </div>
 
             <ion-button expand="block" class="p-4 automaxia-btn" (click)="sendEmail()">ENVIAR</ion-button>
+            <p class="px-4 text-sm text-center text-grayscale-1">
+              Usamos seus dados apenas para responder ao seu contato. Saiba mais na nossa
+              <a routerLink="/privacidade" class="underline text-primary-3 hover:text-offwhite">Política de Privacidade</a>.
+            </p>
           </div>
         </form>
       </div>
@@ -365,6 +369,15 @@
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="instagram-fill" class="text-[32px] mr-2 hover:text-secondary-0"></ion-icon>
               <a href="https://instagram.com/automaxia" target="_blank" class="hover:underline hover:text-secondary-0 ">@automaxia</a>
+            </div>
+          </div>
+
+          <div class="inline-flex items-center justify-start gap-4">
+            <div class="relative w-10 h-10"></div>
+            <div
+              class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
+              <ion-icon name="shield-checkmark-outline" class="text-[32px] mr-2"></ion-icon>
+              <a routerLink="/privacidade" class="hover:underline hover:text-secondary-0">Política de Privacidade</a>
             </div>
           </div>
         </div>

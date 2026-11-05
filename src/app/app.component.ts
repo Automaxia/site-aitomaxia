@@ -3,6 +3,7 @@ import { BreakPointType, ResponsiveService } from '../shared/services/responsive
 import { ROUTE } from '../shared/constants/route';
 import { Router } from '@angular/router';
 import { register } from 'swiper/element/bundle';
+import { AnalyticsService } from '../shared/services/analytics.service';
 
 register();
 
@@ -15,8 +16,10 @@ export class AppComponent {
 	tipoDispositivo: string;
 
 	constructor(private responsiveService: ResponsiveService,
-	            private router: Router) {
+	            private router: Router,
+	            analytics: AnalyticsService) {
 		responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
+		analytics.iniciar();
 	}
 
 	inicio() {

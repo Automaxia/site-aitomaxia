@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnalyticsService } from '../../shared/services/analytics.service';
 
 @Component({
   selector: 'automaxia-privacidade',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacidadePage implements OnInit {
 
-  constructor() { }
+  constructor(private readonly analytics: AnalyticsService) { }
 
   ngOnInit() {
+  }
+
+  alterarCookies(): void {
+    this.analytics.abrirPreferencias();
   }
 
 }

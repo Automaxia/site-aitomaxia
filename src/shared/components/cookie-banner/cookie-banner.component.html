@@ -1,0 +1,11 @@
+<div *ngIf="visivel$ | async" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+  <p class="cookie-texto">
+    Usamos cookies do Google Analytics para entender como o site é usado e melhorá-lo.
+    Eles só são ativados se você aceitar.
+    <a routerLink="/privacidade">Saiba mais</a>
+  </p>
+  <div class="cookie-acoes">
+    <button type="button" class="cookie-btn cookie-btn-secundario" (click)="recusar()">Recusar</button>
+    <button type="button" class="cookie-btn cookie-btn-primario" (click)="aceitar()">Aceitar</button>
+  </div>
+</div>

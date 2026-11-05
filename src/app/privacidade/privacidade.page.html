@@ -8,7 +8,7 @@
 
   <main class="politica">
     <h1>Política de Privacidade</h1>
-    <p class="atualizacao">Última atualização: 5 de novembro de 2026</p>
+    <p class="atualizacao">Última atualização: 5 de novembro de 2026 (inclusão do Google Analytics)</p>
 
     <p>
       Esta política explica como a Automaxia trata os dados pessoais de quem visita o site
@@ -27,12 +27,18 @@
     </p>
 
     <h2>2. Quais dados coletamos</h2>
-    <p>Coletamos apenas os dados que você informa no formulário de contato:</p>
+    <p>Pelo formulário de contato, coletamos os dados que você informa:</p>
     <ul>
       <li>nome;</li>
       <li>e-mail;</li>
       <li>telefone.</li>
     </ul>
+    <p>
+      Se você aceitar os cookies de análise, também coletamos dados de navegação pelo Google Analytics:
+      páginas visitadas, tempo de permanência, origem da visita (por exemplo, busca no Google),
+      tipo de dispositivo e navegador, e localização aproximada (cidade), além de um identificador
+      aleatório guardado em cookie. Esses dados não incluem seu nome, e-mail ou telefone.
+    </p>
     <p>
       Não pedimos dados sensíveis, não criamos contas de usuário e não coletamos dados
       de crianças e adolescentes de forma intencional.
@@ -48,6 +54,11 @@
       A base legal é a execução de procedimentos preliminares a um contrato, a seu pedido
       (art. 7º, V, da LGPD), já que é você quem nos procura pelo formulário.
     </p>
+    <p>
+      Os dados do Google Analytics servem para medir a audiência do site, saber quais conteúdos
+      interessam mais e quantos contatos o site gera. Eles são tratados com base no seu
+      consentimento (art. 7º, I, da LGPD), que você pode retirar a qualquer momento.
+    </p>
 
     <h2>4. Com quem compartilhamos</h2>
     <p>Para o site funcionar, alguns fornecedores recebem dados em nosso nome:</p>
@@ -59,6 +70,11 @@
       <li>
         <strong>Provedor de e-mail corporativo</strong>: armazena as mensagens recebidas
         em contato&#64;automaxia.com.br.
+      </li>
+      <li>
+        <strong>Google Analytics</strong> (Google LLC): recebe os dados de navegação descritos acima,
+        somente se você aceitar os cookies de análise. Desativamos os recursos de publicidade
+        e de sinais do Google.
       </li>
       <li>
         <strong>Google Fonts</strong> e <strong>jsDelivr</strong>: fornecem as fontes e bibliotecas
@@ -77,8 +93,19 @@
 
     <h2>5. Cookies</h2>
     <p>
-      O site não usa cookies de publicidade, de rastreamento ou de análise de audiência.
-      Se isso mudar, esta política será atualizada e pediremos o seu consentimento antes.
+      O site não usa cookies de publicidade. Usamos apenas cookies de análise do Google Analytics
+      (<code>_ga</code> e <code>_ga_*</code>, com validade de até 2 anos), e somente depois que você
+      clica em “Aceitar” no aviso de cookies. Se você recusar, o Google Analytics não é carregado.
+    </p>
+    <p>
+      Guardamos a sua escolha no próprio navegador, para não perguntar de novo a cada visita.
+      Você pode mudar de ideia quando quiser:
+    </p>
+    <p>
+      <button type="button" class="botao-cookies" (click)="alterarCookies()">Alterar minha escolha de cookies</button>
+    </p>
+    <p>
+      Os dados do Google Analytics ficam disponíveis por 14 meses e depois são excluídos automaticamente.
     </p>
 
     <h2>6. Por quanto tempo guardamos</h2>

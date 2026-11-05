@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../shared/services/email.service';
+import { AnalyticsService } from '../../shared/services/analytics.service';
 import { BreakPointType, ResponsiveService } from "../../shared/services/responsive.service";
 
 // ✅ ADICIONE estas importações do Ionic:
@@ -51,7 +52,8 @@ export class HomePage {
     private readonly email: EmailService,
     private readonly responsiveService: ResponsiveService,
     private readonly toastController: ToastController,
-    private readonly loadingController: LoadingController) {
+    private readonly loadingController: LoadingController,
+    private readonly analytics: AnalyticsService) {
     this.responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -233,6 +235,9 @@ export class HomePage {
           icon: 'checkmark-circle'
         });
         await toast.present();
+
+        // Conversão no GA (sem dados pessoais; só envia se houver consentimento)
+        this.analytics.evento('generate_lead', { form_name: 'contato' });
 
         // Limpar formulário apenas em caso de sucesso
         this.emailForm.reset();

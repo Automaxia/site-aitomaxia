@@ -1,5 +1,6 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { SERVICOS } from '../shared/constants/servicos';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: 'termos',
     loadChildren: () => import('./termos/termos.module').then( m => m.TermosPageModule)
   },
+  ...SERVICOS.map(s => ({
+    path: s.slug,
+    loadChildren: () => import('./servico/servico.module').then(m => m.ServicoPageModule)
+  })),
   {
     path: '**',
     redirectTo: ''

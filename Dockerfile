@@ -1,5 +1,8 @@
 FROM node:18.17.1 AS build
 
+# Chromium headless para o pré-render (scripts/prerender.mjs).
+RUN apt-get update  && apt-get install -y --no-install-recommends chromium  && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY tsconfig.json ./
 COPY package*.json ./
@@ -11,6 +14,7 @@ COPY . /assets/
 RUN npm install -g @angular/cli
 
 RUN npm run build
+RUN node scripts/prerender.mjs
 
 ### STAGE 2: Build ###
 FROM nginx:1.21.6-alpine

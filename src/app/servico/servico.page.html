@@ -1,0 +1,48 @@
+<ion-content class="servico-content">
+  <header class="fixed top-0 left-0 z-30 flex items-center justify-between w-full h-[60px] px-4 bg-black bg-opacity-90">
+    <a routerLink="/" class="flex items-center" aria-label="Página inicial da Automaxia">
+      <img src="assets/img/logo-vetor.svg" class="h-[32px] mobile:h-[20px]" alt="logo automaxia">
+    </a>
+    <a routerLink="/" fragment="contato" class="text-base font-bold text-primary-3 hover:text-offwhite">Fale com a gente</a>
+  </header>
+
+  <main class="servico">
+    <nav class="trilha" aria-label="Você está em">
+      <a routerLink="/">Início</a> <span aria-hidden="true">/</span> <span>{{ servico.nome }}</span>
+    </nav>
+
+    <h1>{{ servico.h1 }}</h1>
+    <p class="intro">{{ servico.intro }}</p>
+
+    <section *ngFor="let secao of servico.secoes">
+      <h2>{{ secao.titulo }}</h2>
+      <p *ngFor="let p of secao.paragrafos">{{ p }}</p>
+      <div class="itens" *ngIf="secao.itens?.length">
+        <div class="item" *ngFor="let item of secao.itens">
+          <h3>{{ item.titulo }}</h3>
+          <p>{{ item.texto }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Tecnologias que usamos</h2>
+      <ul class="tecnologias">
+        <li *ngFor="let t of servico.tecnologias">{{ t }}</li>
+      </ul>
+    </section>
+
+    <section class="chamada">
+      <h2>Vamos conversar sobre o seu projeto?</h2>
+      <p>Conte o que você precisa e a gente responde com os próximos passos.</p>
+      <a routerLink="/" fragment="contato" class="botao">Fale com a Automaxia</a>
+    </section>
+
+    <section>
+      <h2>Outros serviços</h2>
+      <ul class="outros">
+        <li *ngFor="let s of outros"><a [routerLink]="'/' + s.slug">{{ s.nome }}</a></li>
+      </ul>
+    </section>
+  </main>
+</ion-content>

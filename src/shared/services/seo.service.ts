@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { SERVICOS } from '../constants/servicos';
 
 const SITE = 'https://automaxia.com.br';
 
@@ -25,6 +26,9 @@ const PAGINAS: Record<string, PaginaSeo> = {
     descricao: 'Termos e condições de uso do site da Automaxia.',
   },
 };
+for (const s of SERVICOS) {
+  PAGINAS['/' + s.slug] = { titulo: s.tituloSeo, descricao: s.descricaoSeo };
+}
 
 /** Mantém título, descrição, canônico e Open Graph de acordo com a rota atual. */
 @Injectable({ providedIn: 'root' })

@@ -5,3 +5,17 @@
 .produtos-swiper-mobile .swiper-pagination {
   bottom: -30px !important;
 }
+// Card de serviço que leva para a página do serviço.
+.card-link {
+  text-decoration: none;
+
+  &[href] ion-card {
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  &[href]:hover ion-card,
+  &[href]:focus-visible ion-card {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px var(--primary-3);
+  }
+}

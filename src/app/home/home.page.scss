@@ -1,3 +1,7 @@
-//.carousel-inicio {
-//  background: url(/assets/img/inicio-background.png) 0 0/100% 100% no-repeat;
-//}
+.produtos-swiper .swiper-pagination {
+  bottom: -40px !important;
+}
+
+.produtos-swiper-mobile .swiper-pagination {
+  bottom: -30px !important;
+}

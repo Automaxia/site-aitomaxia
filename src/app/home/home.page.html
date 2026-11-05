@@ -1,94 +1,87 @@
 <div class="h-full carousel carousel-vertical bg-[#130A06] ">
   <div class="desktop:hidden header-home w-full flex h-[80px] flex-col fixed top-0 l-0 bg-opacity-90 bg-black z-30">
-    <div class="flex flex-row mt-1 justify-between">
-      <div class="cursor-pointer logo justify-start items-center flex ml-4" (click)="irParaSessao('home')">
+    <div class="flex flex-row justify-between mt-1">
+      <div class="flex items-center justify-start ml-4 cursor-pointer logo" (click)="irParaSessao('home')">
         <img src="assets/img/logo-vetor.svg" class="h-[20px]" alt="logo automaxia">
       </div>
       <div class="flex w-[20%] justify-end items-center mt-1 mr-4">
         <ion-icon name="linkedin"
-                  class="text-xl mr-2 text-primary-3 hover:text-offwhite cursor-pointer"
+                  class="mr-2 text-xl cursor-pointer text-primary-3 hover:text-offwhite"
                   (click)="navToLinkedin()"></ion-icon>
-        <ion-icon name="instagram" class="text-lg text-primary-3 hover:text-offwhite cursor-pointer"
+        <ion-icon name="instagram" class="text-lg cursor-pointer text-primary-3 hover:text-offwhite"
                   (click)="navToInstagram()"></ion-icon>
       </div>
     </div>
 
-    <div class="wrapper-buttons flex justify-center">
-      <!--              <button (click)="irParaSessao('home')"-->
-      <!--                      class="text-lg btn btn-link text-primary-1 font-bold hover:text-offwhite underline-offset-[6px]">-->
-      <!--                Home-->
-      <!--              </button>-->
+    <div class="flex justify-center wrapper-buttons">
       <button (click)="irParaSessao('servicos')"
-              class="text-lg mobile:text-sm btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
         Serviços
       </button>
-      <button (click)="irParaSessao('produtos')"
-              class="text-lg mobile:text-sm btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
-        Produtos
+      <button (click)="irParaSessao('solucoes')"
+              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
+        Soluções
       </button>
       <button (click)="irParaSessao('parceiros')"
-              class="text-lg mobile:text-sm btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
         Parceiros
       </button>
       <button (click)="irParaSessao('contato')"
-              class="text-lg mobile:text-sm btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
         Contato
       </button>
     </div>
   </div>
 
   <div class="header-home w-full flex h-[60px] mobile:hidden flex-row fixed top-0 l-0 bg-opacity-90 bg-black z-30 justify-between">
-    <div class="cursor-pointer logo justify-start items-center flex ml-4" (click)="irParaSessao('home')">
+    <div class="flex items-center justify-start ml-4 cursor-pointer logo" (click)="irParaSessao('home')">
       <img src="assets/img/logo-vetor.svg" class="h-[32px]" alt="logo automaxia">
     </div>
 
-    <div class="wrapper-buttons flex justify-center items-end">
-      <!--              <button (click)="irParaSessao('home')"-->
-      <!--                      class="text-lg btn btn-link text-primary-1 font-bold hover:text-offwhite underline-offset-[6px]">-->
-      <!--                Home-->
-      <!--              </button>-->
+    <div class="flex items-end justify-center wrapper-buttons">
       <button (click)="irParaSessao('servicos')"
-              class="text-lg btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Serviços
       </button>
-      <button (click)="irParaSessao('produtos')"
-              class="text-lg btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
-        Produtos
+      <button (click)="irParaSessao('solucoes')"
+              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
+        Soluções
       </button>
       <button (click)="irParaSessao('parceiros')"
-              class="text-lg btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Parceiros
       </button>
       <button (click)="irParaSessao('sobre')"
-              class="text-lg btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Sobre
       </button>
       <button (click)="irParaSessao('contato')"
-              class="text-lg btn btn-link text-primary-3 font-bold hover:text-offwhite no-underline normal-case">
+              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Contato
       </button>
     </div>
 
-    <div class="flex justify-end items-center mt-1 mr-4">
+    <div class="flex items-center justify-end mt-1 mr-4">
       <ion-icon name="linkedin"
-                class="text-4xl mr-2 text-primary-3 hover:text-offwhite cursor-pointer"
+                class="mr-2 text-4xl cursor-pointer text-primary-3 hover:text-offwhite"
                 (click)="navToLinkedin()"></ion-icon>
-      <ion-icon name="instagram" class="text-4xl text-primary-3 hover:text-offwhite cursor-pointer"
+      <ion-icon name="instagram" class="text-4xl cursor-pointer text-primary-3 hover:text-offwhite"
                 (click)="navToInstagram()"></ion-icon>
     </div>
   </div>
+
   <!-- home -->
   <ng-container #paginaHome>
-    <div class="carousel-item h-full content-center justify-center" #home>
+    <div class="content-center justify-center h-full carousel-item" #home>
       <div class="relative w-full h-full">
         <video oncanplay="this.play()" onloadedmetadata="this.muted = true" src="/assets/video-2.mov"
                autoplay
                loop
                muted
-               class="absolute z-10 w-full h-full object-cover">
+               class="absolute z-10 object-cover w-full h-full">
           <source type="video/mov"/>
         </video>
-        <div class="relative z-20 bg-opacity-50 bg-black w-full h-full ">
+        <div class="relative z-20 w-full h-full bg-black bg-opacity-50 ">
           <div class="flex conteudo h-[60%] w-full items-end justify-center">
             <h1
               class="text-primary-3 font-inter text-6xl mobile:text-4xl leading-[145%] tracking-[0.2px] text-center px-8 texto-digitado">
@@ -102,13 +95,13 @@
 
   <!-- servicos -->
   <ng-container #paginaServicos>
-    <div class="carousel-item h-full flex flex-col content-center justify-center" #servicos>
-      <div class="px-8 mobile:px-0 flex flex-col items-center justify-center pt-20">
-        <div class="flex flex-col mobile:mt-2 mb-4">
-          <div class="text-primary-3 font-bold text-5xl mobile:text-3xl text-center relative">
+    <div class="flex flex-col content-center justify-center h-full carousel-item" #servicos>
+      <div class="flex flex-col items-center justify-center px-8 pt-20 mobile:px-0">
+        <div class="flex flex-col mb-4 mobile:mt-2">
+          <div class="relative text-5xl font-bold text-center text-primary-3 mobile:text-3xl">
             Serviços<span class="animate-ping">|</span>
           </div>
-          <div class="leading-6 mobile:hidden text-primary-3 mt-8 mobile:mt-2  text-center relative text-2xl mobile:text-[14px] px-2">
+          <div class="leading-6 mobile:hidden text-primary-3 mt-8 mobile:mt-2 text-center relative text-2xl mobile:text-[14px] px-2">
             Nossos serviços são orientados à maximização da inteligência humana
             através da transformação digital com tecnologias, processos e serviços
             digitais.
@@ -116,12 +109,12 @@
         </div>
 
         <!-- SERVIÇOS -->
-        <div class="flex flex-row gap-12 items-start justify-start self-stretch shrink-0 relative mobile:mt-4">
+        <div class="relative flex flex-row items-start self-stretch justify-start gap-12 shrink-0 mobile:mt-4">
           <ng-container>
             <swiper-container [slidesPerView]="slidesPerView" autopaly="true" delay="3000" autoplay-delay="4000" loop="true" navigation="true" pagination="true" class="w-full desktop:h-[600px] mobile:h-[380px]">
 
               <swiper-slide *ngFor="let item of servicosInfo"
-                            class="flex justify-center items-center bg-center bg-cover px-8 mobile:px-4">
+                            class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
                 <ion-card class="bg-black max-w-[360px] max-h-[403px] w-[360px] h-[403px] mobile:max-h-[370px]">
                   <div class="w-[100%] h-[200px] mobile:h-[120px] bg-cover" [ngClass]="item.bgImg">
                   </div>
@@ -145,19 +138,19 @@
 
   <!-- founders -->
   <ng-container #foundersServicos>
-    <div #sobre class="carousel-item h-full content-center justify-center">
-      <div class="relative w-full h-full bg-opacity-50 bg-black">
+    <div #sobre class="content-center justify-center h-full carousel-item">
+      <div class="relative w-full h-full bg-black bg-opacity-50">
         <video oncanplay="this.play()" onloadedmetadata="this.muted = true" src="/assets/video-1.mov"
                autoplay
                loop
                muted
-               class="absolute z-10 w-full h-full object-cover">
+               class="absolute z-10 object-cover w-full h-full">
           <source type="video/mov"/>
         </video>
         <div class="relative z-20 w-full h-full bg-[rgba(19,10,6,0.80)]">
           <div class="flex flex-col pt-20">
-            <div class="text-primary-3 font-bold text-5xl mobile:text-3xl text-center relative mobile:mt-2 mb-4">Founders<span class="animate-ping">|</span></div>
-            <div class="leading-6 mobile:hidden text-primary-3 mt-8 mobile:mt-2  text-center relative text-2xl mobile:text-[14px] px-2">
+            <div class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">Founders<span class="animate-ping">|</span></div>
+            <div class="leading-6 mobile:hidden text-primary-3 mt-8 mobile:mt-2 text-center relative text-2xl mobile:text-[14px] px-2">
               Somos motivados e comprometidos em trazer resultados para o seu negócio. Com nossa vasta experiência trabalhando tanto como clientes quanto fornecedores, entendemos profundamente os desafios reais enfrentados e como superá-los. Estamos sempre buscando maneiras inovadoras de resolver problemas e não descansaremos até encontrarmos as melhores soluções para o sucesso do seu empreendimento. Trazemos uma mentalidade empreendedora e proativa para superar obstáculos e alcançar novas conquistas.
             </div>
           </div>
@@ -167,85 +160,92 @@
     </div>
   </ng-container>
 
-  <!-- como fazemos -->
-  <ng-container #paginaComoFazemos>
-    <div class="carousel-item h-full flex flex-col content-center justify-center" id="como-fazemos">
-      <div class="flex flex-col pt-20">
-        <div class="text-primary-3 font-bold text-5xl mobile:text-3xl text-center relative mb-4 mobile:mt-2">Como fazemos<span class="animate-ping">?</span>
-        </div>
-        <div class="leading-6 text-primary-3 mt-4  text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
-          Muita experiência, as melhores tecnologias, metodologias e
-          processos para<br/> atender os seus desafios.
-        </div>
+  <!-- soluções -->
+<ng-container #paginaSolucoes>
+  <div class="flex flex-col content-center justify-center h-full carousel-item" #solucoes>
+    <style>
+      /* Ajustar posição da paginação do swiper de solucoes */
+      .solucoes-swiper .swiper-pagination {
+        bottom: -60px !important;
+        position: relative !important;
+      }
+      .solucoes-swiper-mobile .swiper-pagination {
+        bottom: -50px !important;
+        position: relative !important;
+      }
+      /* Garantir que o container tenha espaço suficiente */
+      .solucoes-swiper {
+        padding-bottom: 70px !important;
+      }
+      .solucoes-swiper-mobile {
+        padding-bottom: 60px !important;
+      }
+    </style>
+    <div class="flex flex-col pt-20" style="padding-top: 200px;">
+      <div class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">
+        Soluções<span class="animate-ping">|</span>
       </div>
-      <div class="h-[60%] flex justify-center mt-4">
-        <img src="assets/img/como-fazemos.png" alt="" class="mobile:hidden h-[90%]">
-        <img src="assets/img/como-fazemos-mobile.png" alt="" class="desktop:hidden h-[90%]" >
-      </div>
-    </div>
-  </ng-container>
-
-  <!-- produtos -->
-  <ng-container #paginaProdutos>
-    <div class="carousel-item h-full flex flex-col content-center justify-center" #produtos>
-      <div class="flex flex-col pt-20">
-        <div class="text-primary-3 font-bold text-5xl mobile:text-3xl text-center relative mb-4 mobile:mt-2">
-          Produtos<span class="animate-ping">|</span>
-        </div>
-        <div class="leading-6 text-primary-3 mt-4  text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
-          Temos uma linha completa de produtos próprios para desenvolver
-          sua Automação ou mesmo projeto de Inteligência Artificial.
-        </div>
-      </div>
-      <div class="pt-20 mobile:pt-2 px-4 mobile:px-0 w-full flex  flex-row justify-center items-center">
-        <div class="mobile:grid mobile:grid-cols-1 mobile:w-full desktop:flex">
-          <div class="w-full mt-4 desktop:hidden">
-            <swiper-container autopaly="true" delay="3000" autoplay-delay="3000" loop="true" slides-per-view="1" navigation="true" pagination="true"  class="w-full h-[405px] mobile:h-[370px]">
-
-              <swiper-slide *ngFor="let item of produtosInfo" class="flex justify-center items-center bg-center bg-cover px-8 mobile:px-4">
-                <ion-card class="bg-black max-w-[360px] max-h-[403px] w-[360px] h-[403px] ">
-                  <div class="w-[100%] h-[200px] mobile:h-[120px] bg-cover" [ngClass]="item.bgImg">
-                  </div>
-                  <ion-card-header>
-                    <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
-                    <ion-card-subtitle>{{item.subTitulo}}</ion-card-subtitle>
-                  </ion-card-header>
-
-                  <ion-card-content class="text-white mobile:text-sm">
-                    {{item.descricao}}
-                  </ion-card-content>
-                </ion-card>
-              </swiper-slide>
-            </swiper-container>
-          </div>
-          <div *ngFor="let item of produtosInfo" class="mobile:hidden">
-            <ion-card class="max-w-[360px] max-h-[403px] w-[360px] h-[403px] bg-cover" [ngClass]="item.bgImg">
-              <div class="w-[100%] h-[200px] mobile:h-[150px]">
-              </div>
-              <ion-card-header class="bg-black bg-opacity-90">
-                <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
-                <ion-card-subtitle class="text-primary-3">{{item.subTitulo}}</ion-card-subtitle>
-              </ion-card-header>
-
-              <ion-card-content class="text-white mobile:text-sm bg-black h-[100%] bg-opacity-90">
-                {{item.descricao}}
-              </ion-card-content>
-            </ion-card>
-          </div>
-        </div>
+      <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
+        Temos uma linha completa de soluções próprios para desenvolver
+        sua Automação ou mesmo projeto de Inteligência Artificial.
       </div>
     </div>
-  </ng-container>
+    <div class="flex flex-row items-center justify-center w-full px-4 pt-10 pb-24 mobile:pt-2 mobile:px-0">
+      <div class="mobile:grid mobile:grid-cols-1 mobile:w-full desktop:flex desktop:w-full">
+        <div class="w-full mt-4 desktop:hidden">
+          <swiper-container class="solucoes-swiper-mobile" autopaly="true" delay="3000" autoplay-delay="3000" loop="true" slides-per-view="1" navigation="true" pagination="true" style="padding-bottom: 60px; height: 540px;">
+
+            <swiper-slide *ngFor="let item of solucoesInfo" class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
+              <ion-card class="bg-black max-w-[360px] max-h-[470px] w-[360px] h-[470px] ">
+                <div class="w-[100%] h-[200px] mobile:h-[150px] bg-cover" [ngClass]="item.bgImg">
+                </div>
+                <ion-card-header>
+                  <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
+                  <ion-card-subtitle>{{item.subTitulo}}</ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content class="text-white mobile:text-sm">
+                  {{item.descricao}}
+                </ion-card-content>
+              </ion-card>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+
+        <!-- Desktop Swiper -->
+        <div class="w-full mobile:hidden">
+          <swiper-container class="solucoes-swiper" [slidesPerView]="slidesPerViewSolucoes" autopaly="true" delay="3000" autoplay-delay="4000" loop="true" navigation="true" pagination="true" style="padding-bottom: 70px; height: 690px;">
+
+            <swiper-slide *ngFor="let item of solucoesInfo" class="flex items-center justify-center px-4 bg-center bg-cover">
+              <ion-card class="bg-black max-w-[380px] max-h-[500px] w-[380px] h-[500px] bg-cover" [ngClass]="item.bgImg">
+                <div class="w-[100%] h-[200px]">
+                </div>
+                <ion-card-header class="p-4 bg-black bg-opacity-90">
+                  <ion-card-title class="text-xl text-primary-3">{{item.titulo}}</ion-card-title>
+                  <ion-card-subtitle class="text-base text-primary-3">{{item.subTitulo}}</ion-card-subtitle>
+                </ion-card-header>
+
+                <ion-card-content class="text-white text-sm bg-black bg-opacity-90 p-4 h-[200px] overflow-y-auto">
+                  {{item.descricao}}
+                </ion-card-content>
+              </ion-card>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
 
   <!-- parceiros -->
   <ng-container #paginaParceiros>
-    <div class="carousel-item h-full flex flex-col content-center justify-center" #parceiros>
+    <div class="flex flex-col content-center justify-center h-full carousel-item" #parceiros>
       <div class="flex flex-col pt-20">
-        <div class="text-primary-3 font-bold text-5xl text-center relative mobile:text-3xl mobile:mt-2">
+        <div class="relative text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">
           Parceiros, Tecnologias e Clientes<span class="animate-ping">|</span>
         </div>
-        <div class="leading-6 text-primary-3 mt-4  text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
-          Além dos nossos produtos, temos parceiros fortes e usamos
+        <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
+          Além dos nossos soluções, temos parceiros fortes e usamos
           tecnologias de<br/> mercado já validadas e testadas por milhares de clientes pelo mundo.
         </div>
       </div>
@@ -253,7 +253,7 @@
       <div class="pt-20 mobile:pt-6 px-14 mobile:px-0">
         <ion-row class="mobile:px-4">
           <ion-col *ngFor="let item of parceirosInfo" class="border border-gray-500 mobile:max-h-[42px]">
-            <div class="bg-grayscale-black flex flex-col items-center justify-center p-2 h-full">
+            <div class="flex flex-col items-center justify-center h-full p-2 bg-grayscale-black">
               <img class="h-[54px] w-[54px]" src="assets/img/{{item.icone}}" alt="">
               <ion-text class="text-offwhite text-base font-bold leading-6 tracking-[0.1px] mt-4 mobile:hidden text-center">{{item.nome}}</ion-text>
             </div>
@@ -277,7 +277,7 @@
         <div class="desktop:hidden">
           <swiper-container [slidesPerView]="1" autopaly="true" delay="3000" autoplay-delay="3000" loop="true" navigation="true" pagination="true" class="w-full">
 
-            <swiper-slide *ngFor="let item of clientesInfo" class="justify-center items-center flex flex-col text-center px-8">
+            <swiper-slide *ngFor="let item of clientesInfo" class="flex flex-col items-center justify-center px-8 text-center">
               <ion-card class="bg-[#130A06] w-[360px] mobile:w-[300px] justify-center items-center flex flex-col">
                 <img [src]="item.img" class="h-[42px] flex mobile:hidden">
                 <ion-card-header>
@@ -299,16 +299,16 @@
   <ng-container #paginaContato>
     <div class="carousel-item h-[140%] flex flex-col content-center justify-center" #contato>
       <div class="flex flex-col pt-20">
-        <div class="text-primary-3 font-bold text-5xl mobile:text-3xl text-center relative mb-4 mobile:mt-4">
+        <div class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-4">
           Contato<span class="animate-ping">|</span>
         </div>
-        <div class="leading-6 text-primary-3 mt-4  text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
+        <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
           Quer entender como podemos ajudar? Precisa de apoio para escalar
           seu negócio? Fale com conosco, estamos prontos para ajudar.
         </div>
       </div>
 
-      <div class="pt-20 mobile:pt-1 flex items-center flex-col w-full desktop:h-2/3">
+      <div class="flex flex-col items-center w-full pt-20 mobile:pt-1 desktop:h-2/3">
         <form [formGroup]="emailForm" class="flex w-[100%] justify-center ml-2 mr-2">
           <div class="flex flex-col w-[100%] max-w-[600px] formulario">
             <div class="automaxia-input">
@@ -325,7 +325,7 @@
               </ion-item>
             </div>
 
-            <div class="automaxia-input mb-6">
+            <div class="mb-6 automaxia-input">
               <ion-item>
                 <ion-input label="Telefone" type="tel" label-placement="floating" color="light"
                            id="telefone" [brmasker]="{ mask: '(00) 00000-0000', type: 'num', len: 15 }" formControlName="telefone"></ion-input>
@@ -337,10 +337,10 @@
         </form>
       </div>
 
-      <div class="w-full py-12 bg-grayscale-1 justify-center items-center mt-32 inline-flex pb-8">
-        <div class="flex-col justify-start items-start gap-6 inline-flex">
-          <div class="justify-start items-center gap-4 inline-flex">
-            <div class="w-10 h-10 relative"></div>
+      <div class="inline-flex items-center justify-center w-full py-12 pb-8 mt-32 bg-grayscale-1">
+        <div class="inline-flex flex-col items-start justify-start gap-6">
+          <div class="inline-flex items-center justify-start gap-4">
+            <div class="relative w-10 h-10"></div>
             <div
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="location-fill" class="text-[32px] mr-2"></ion-icon>
@@ -349,17 +349,8 @@
             </div>
           </div>
 
-          <!--<div class="justify-start items-center gap-4 inline-flex">-->
-          <!--  <div class="w-10 h-10 relative"></div>-->
-          <!--  <div-->
-          <!--    class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">-->
-          <!--    <ion-icon name="phone-fill" class="text-[32px] mr-2"></ion-icon>-->
-          <!--    Telefone-->
-          <!--  </div>-->
-          <!--</div>-->
-
-          <div class="justify-start items-center gap-4 inline-flex">
-            <div class="w-10 h-10 relative"></div>
+          <div class="inline-flex items-center justify-start gap-4">
+            <div class="relative w-10 h-10"></div>
             <div
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="linkedin-fill" class="text-[32px] mr-2"></ion-icon>
@@ -368,8 +359,8 @@
             </div>
           </div>
 
-          <div class="justify-start items-center gap-4 inline-flex">
-            <div class="w-10 h-10 relative"></div>
+          <div class="inline-flex items-center justify-start gap-4">
+            <div class="relative w-10 h-10"></div>
             <div
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="instagram-fill" class="text-[32px] mr-2 hover:text-secondary-0"></ion-icon>
@@ -381,4 +372,3 @@
     </div>
   </ng-container>
 </div>
-

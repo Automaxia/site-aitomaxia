@@ -1,11 +1,13 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../shared/services/email.service';
-import { ToastController } from '@ionic/angular';
-import {BreakPointType, ResponsiveService} from "../../shared/services/responsive.service";
+import { BreakPointType, ResponsiveService } from "../../shared/services/responsive.service";
 
-function formatPhoneNumber(phoneNumber:any) {
+// ✅ ADICIONE estas importações do Ionic:
+import { ToastController, LoadingController } from '@ionic/angular';
+
+function formatPhoneNumber(phoneNumber: any) {
   // Remover todos os caracteres não numéricos do número
   const cleanedNumber = phoneNumber.replace(/\D/g, '');
 
@@ -34,19 +36,22 @@ export class HomePage {
   telefone = '';
   nome = ''
   slidesPerView = 5;
+  slidesPerViewSolucoes = 3;
   @ViewChild('home') home: ElementRef;
   @ViewChild('sobre') sobre: ElementRef;
   @ViewChild('contato') contato: ElementRef;
   @ViewChild('servicos') servicos: ElementRef;
-  @ViewChild('produtos') produtos: ElementRef;
+  @ViewChild('solucoes') solucoes: ElementRef;
   @ViewChild('parceiros') parceiros: ElementRef;
 
 
-  constructor(private router: Router,
-              private fb: FormBuilder,
-              private email: EmailService,
-              private responsiveService: ResponsiveService,
-              private toastController: ToastController) {
+  constructor(
+    private readonly router: Router,
+    private readonly fb: FormBuilder,
+    private readonly email: EmailService,
+    private readonly responsiveService: ResponsiveService,
+    private readonly toastController: ToastController,
+    private readonly loadingController: LoadingController) {
     this.responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -64,18 +69,22 @@ export class HomePage {
     if (['xs', 'sm'].includes(breakpoint)) {
       this.tipoDispositivo = 'mobile';
       this.slidesPerView = 1;
+      this.slidesPerViewSolucoes = 1;
       console.log('dispositivo: ', this.tipoDispositivo);
     } else if (breakpoint === 'md') {
       this.tipoDispositivo = 'tablet';
       this.slidesPerView = 3;
+      this.slidesPerViewSolucoes = 2;
       console.log('dispositivo: ', this.tipoDispositivo);
     } else if (breakpoint === 'xxl') {
       this.tipoDispositivo = 'desktop';
       this.slidesPerView = 4;
+      this.slidesPerViewSolucoes = 4;
       console.log('dispositivo: ', this.tipoDispositivo);
     } else {
       this.tipoDispositivo = 'desktop';
       this.slidesPerView = 3;
+      this.slidesPerViewSolucoes = 3;
       console.log('dispositivo: ', this.tipoDispositivo);
     }
   }
@@ -111,17 +120,164 @@ export class HomePage {
     this.telefone = formattedPhoneNumber;
   }
 
-  sendEmail(){
-    if( this.emailForm.valid ) {
-      console.log(this.emailForm.value);
-      const assunto = 'Contato via site';
-      const corpo = 'Nome: '+this.emailForm.value.nome+'<br>' +
-          'Telefone: '+this.emailForm.value.telefone;
+  async sendEmail() {
+    // Validação do formulário ANTES de tentar enviar
+    if (!this.emailForm.valid) {
+      // Marcar todos os campos como touched para mostrar erros
+      Object.keys(this.emailForm.controls).forEach(key => {
+        this.emailForm.get(key)?.markAsTouched();
+      });
 
-      this.email.envioemail(assunto, corpo, this.emailForm.value.email)
+      // Mostrar toast de erro
+      const toast = await this.toastController.create({
+        message: 'Por favor, preencha todos os campos obrigatórios!',
+        duration: 3000,
+        position: 'top',
+        color: 'danger',
+        icon: 'alert-circle'
+      });
+      await toast.present();
+      return;
     }
-    this.presentToast('top');
-    this.emailForm.reset();
+
+    // Validações específicas adicionais
+    const formData = this.emailForm.value;
+
+    if (!formData.nome || formData.nome.trim().length < 2) {
+      this.presentErrorToast('Nome deve ter pelo menos 2 caracteres');
+      return;
+    }
+
+    if (!formData.email || !this.isValidEmail(formData.email)) {
+      this.presentErrorToast('Por favor, insira um e-mail válido');
+      return;
+    }
+
+    if (!formData.telefone || formData.telefone.replace(/\D/g, '').length < 10) {
+      this.presentErrorToast('Por favor, insira um telefone válido');
+      return;
+    }
+
+    try {
+      // Mostrar loading
+      const loading = await this.loadingController.create({
+        message: 'Enviando mensagem...',
+        spinner: 'crescent'
+      });
+      await loading.present();
+
+      // Dados para envio
+      const dadosCliente = {
+        nome: formData.nome.trim(),
+        email: formData.email.trim().toLowerCase(),
+        telefone: formData.telefone
+      };
+
+      // Assunto personalizado
+      const assunto = `Contato via site - ${dadosCliente.nome}`;
+
+      // Corpo do e-mail em HTML
+      const corpoEmail = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background-color: #130A06; color: #FFA500; padding: 20px; text-align: center;">
+          <h2>🤖 Novo Contato - Site Automaxia</h2>
+        </div>
+
+        <div style="padding: 20px; background-color: #f9f9f9;">
+          <h3 style="color: #333;">Informações do Cliente:</h3>
+
+          <table style="width: 100%; border-collapse: collapse;">
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Nome:</td>
+              <td style="padding: 10px;">${dadosCliente.nome}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 10px; font-weight: bold; color: #FFA500;">E-mail:</td>
+              <td style="padding: 10px;">${dadosCliente.email}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Telefone:</td>
+              <td style="padding: 10px;">${dadosCliente.telefone}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #ddd;">
+              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Data/Hora:</td>
+              <td style="padding: 10px;">${new Date().toLocaleString('pt-BR')}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Origem:</td>
+              <td style="padding: 10px;">Site Automaxia - Formulário de Contato</td>
+            </tr>
+          </table>
+        </div>
+
+        <div style="background-color: #130A06; color: #FFA500; padding: 15px; text-align: center; font-size: 14px;">
+          <p>📧 Este é um e-mail automático do sistema de contato da Automaxia</p>
+          <p>🔗 <strong>Responder para:</strong> ${dadosCliente.email}</p>
+        </div>
+      </div>
+    `;
+
+      // Tentar enviar o e-mail
+      const resultado = await this.email.envioemail(assunto, corpoEmail, dadosCliente);
+
+      // Fechar loading
+      await loading.dismiss();
+
+      if (resultado.success) {
+        // Sucesso - mostrar toast de sucesso
+        const toast = await this.toastController.create({
+          message: '✅ Mensagem enviada com sucesso! Entraremos em contato em breve.',
+          duration: 4000,
+          position: 'top',
+          color: 'success',
+          icon: 'checkmark-circle'
+        });
+        await toast.present();
+
+        // Limpar formulário apenas em caso de sucesso
+        this.emailForm.reset();
+      } else {
+        // Erro no envio
+        throw new Error(resultado.error || 'Erro desconhecido no envio');
+      }
+
+    } catch (error) {
+      console.error('Erro ao enviar e-mail:', error);
+
+      // Fechar loading se ainda estiver aberto
+      const loading = await this.loadingController.getTop();
+      if (loading) {
+        await loading.dismiss();
+      }
+
+      // Mostrar erro para o usuário
+      const toast = await this.toastController.create({
+        message: '❌ Erro ao enviar mensagem. Tente novamente ou entre em contato pelo telefone.',
+        duration: 5000,
+        position: 'top',
+        color: 'danger',
+        icon: 'alert-circle'
+      });
+      await toast.present();
+    }
+  }
+
+  // Método auxiliar para validar e-mail
+  private isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  // Método auxiliar para mostrar toast de erro
+  private async presentErrorToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      color: 'danger',
+      icon: 'alert-circle'
+    });
+    await toast.present();
   }
 
   navToLinkedin() {
@@ -167,8 +323,33 @@ export class HomePage {
       subTitulo: 'Performance de aplicações e estruturas de AIOPS.',
       descricao: 'Performance é o nosso norte, somos especialistas em observar e direcionar suas aplicações, infraestrutura, para maximizar seu negócio.',
       bgImg: `bg-[url('assets/img/servicos-5.png')]`
+    },
+    {
+      titulo: 'Primeiro Atendimento IA',
+      subTitulo: 'Chat integrado com WhatsApp Business e IA',
+      descricao: 'Automatizamos o primeiro contato com seus clientes usando IA generativa integrada ao WhatsApp e Instagram, realizando triagens, coletas de dados e integrações com seus sistemas internos.',
+      bgImg: `bg-[url('assets/img/servicos-6.png')]`
+    },
+    {
+      titulo: 'Dashboards Generativos',
+      subTitulo: 'IA para geração automática de insights',
+      descricao: 'Utilizamos IA para gerar grafos automaticamente e extrair insights dos seus dados, criando dashboards inteligentes que se adaptam às suas necessidades de negócio.',
+      bgImg: `bg-[url('assets/img/servicos-7.png')]`
+    },
+    {
+      titulo: 'CortexAI',
+      subTitulo: 'Fazenda de Agentes de IA',
+      descricao: 'Ambiente dedicado que executam tarefas autônomas ou colaborativas em processos de negócios, combinando IA generativa, machine learning e automação para ganho de escala, velocidade e inteligência operacional.',
+      bgImg: `bg-[url('assets/img/servicos-8.png')]`
+    },
+    {
+      titulo: 'DataVibe AI',
+      subTitulo: 'Treinamento de Modelos por Qualquer Pessoa',
+      descricao: 'Plataforma que democratiza a ciência de dados ao permitir que qualquer pessoa — com ou sem experiência técnica — desenvolva modelos de IA prontos para uso em minutos.',
+      bgImg: `bg-[url('assets/img/servicos-9.png')]`
     }
   ];
+
   parceirosInfo = [
     {
       nome: 'Python',
@@ -190,8 +371,21 @@ export class HomePage {
       nome: 'Amazon Cloud Services',
       icone: 'amazon.png',
     },
+    {
+      nome: 'OpenAI',
+      icone: 'openai.png',
+    },
+    {
+      nome: 'LangChain',
+      icone: 'langchain.png',
+    },
+    {
+      nome: 'LangGraph',
+      icone: 'langgraph.png',
+    },
   ];
-  produtosInfo = [
+
+  solucoesInfo = [
     {
       titulo: 'Automaxia RPA',
       subTitulo: 'Plataforma de Hiperautomação',
@@ -206,29 +400,48 @@ export class HomePage {
     },
     {
       titulo: 'Botfarm',
-      subTitulo: ' Fazenda de robôs',
+      subTitulo: 'Fazenda de robôs',
       descricao: 'Uma maneira poderosa de otimizar operações, reduzir custos e melhorar a experiência do cliente, ao mesmo tempo em que se mantém ágil e adaptável às mudanças nas demandas dos robôs.',
       bgImg: `bg-[url('assets/img/produto-3.png')]`
     },
+    {
+      titulo: 'Talkcare.ai',
+      subTitulo: 'Assistente Inteligente de Atendimento',
+      descricao: 'Plataforma que integra IA generativa, RPA e mensageria para automatizar o primeiro contato com clientes em canais como WhatsApp e Instagram, realizando triagens, coletas de dados e integrações com sistemas internos para acelerar agendamentos, cadastros e respostas a perguntas frequentes.',
+      bgImg: `bg-[url('assets/img/produto-4.png')]`
+    },
+    {
+      titulo: 'CortexAI',
+      subTitulo: 'Fazenda de Agentes de IA',
+      descricao: 'Ambiente dedicado à criação, orquestração e operação de múltiplos agentes inteligentes prontos para uso, que executam tarefas autônomas ou colaborativas em processos de negócios, combinando IA generativa, machine learning e automação para ganho de escala, velocidade e inteligência operacional.',
+      bgImg: `bg-[url('assets/img/produto-5.png')]`
+    },
+    {
+      titulo: 'DataVibe AI',
+      subTitulo: 'Treinamento de Modelos por Qualquer Pessoa',
+      descricao: 'Plataforma que democratiza a ciência de dados ao permitir que qualquer pessoa — com ou sem experiência técnica — desenvolva modelos de IA prontos para uso em minutos. Com interface guiada por IA generativa, o DataVibe conduz todas as etapas do processo analítico, da ingestão de dados à explicabilidade, de forma simples, rápida e poderosa.',
+      bgImg: `bg-[url('assets/img/produto-6.png')]`
+    },
   ];
+
   clientesInfo = [
     {
       img: 'assets/img/user-icon.svg',
       bgImg: `bg-[url('assets/img/user-icon.svg')]`,
       titulo: 'Orthophysio',
-      descricao: '“Estou impressionado como meu negócio ganhou escala e está crescendo com os serviços da Automaxia. Surpreendente”'
+      descricao: '"Estou impressionado como meu negócio ganhou escala e está crescendo com os serviços da Automaxia. Surpreendente"'
     },
     {
       img: 'assets/img/user-icon.svg',
       bgImg: `bg-[url('assets/img/user-icon.svg')]`,
       titulo: 'Health4',
-      descricao: '“Estamos escalando nosso negócio de uma forma nunca antes vista com serviços de automação robótica e de Governança de Dados da Automaxia, simplesmente foi uma mudança de jogo para nós.”'
+      descricao: '"Estamos escalando nosso negócio de uma forma nunca antes vista com serviços de automação robótica e de Governança de Dados da Automaxia, simplesmente foi uma mudança de jogo para nós."'
     },
     {
       img: 'assets/img/user-icon.svg',
       bgImg: `bg-[url('assets/img/user-icon.svg')]`,
-      titulo: 'Azi Contabilidade',
-      descricao: '“Estamos conseguindo crescer em operação e diminuir os custos ao mesmo tempo com todo o processo de automação, o próximo passo é usar IA para escalar ainda mais nosso negócio. Sucesso absoluto com a Automaxia nos apoiando.”'
+      titulo: 'CYTEI',
+      descricao: '"Com o apoio da Automaxia, conseguimos automatizar tarefas críticas e ganhar eficiência operacional. Agora, estamos prontos para dar o próximo passo e escalar com inteligência artificial. A parceria tem sido essencial para nossa evolução."'
     }
   ]
 

@@ -352,14 +352,14 @@ export class HomePage {
       titulo: 'Dashboards Generativos',
       link: '/dados-bi-e-inteligencia-artificial',
       subTitulo: 'IA para geração automática de insights',
-      descricao: 'Utilizamos IA para gerar grafos automaticamente e extrair insights dos seus dados, criando dashboards inteligentes que se adaptam às suas necessidades de negócio.',
+      descricao: 'Utilizamos IA para gerar gráficos automaticamente e extrair insights dos seus dados, criando dashboards inteligentes que se adaptam às suas necessidades de negócio.',
       bgImg: `bg-[url('assets/img/servicos-7.webp')]`
     },
     {
       titulo: 'CortexAI',
       link: '/agentes-de-ia',
       subTitulo: 'Fazenda de Agentes de IA',
-      descricao: 'Ambiente dedicado que executam tarefas autônomas ou colaborativas em processos de negócios, combinando IA generativa, machine learning e automação para ganho de escala, velocidade e inteligência operacional.',
+      descricao: 'Ambiente dedicado a agentes de IA que executam tarefas autônomas ou colaborativas em processos de negócios, combinando IA generativa, machine learning e automação para ganho de escala, velocidade e inteligência operacional.',
       bgImg: `bg-[url('assets/img/servicos-8.webp')]`
     },
     {
@@ -417,7 +417,7 @@ export class HomePage {
     {
       titulo: 'Botanalytics (Datalake)',
       link: '/dados-bi-e-inteligencia-artificial',
-      subTitulo: 'Modulo de Analise',
+      subTitulo: 'Módulo de Análise',
       descricao: 'Envolve várias práticas e tecnologias para garantir que os dados coletados e gerados por sua organização sejam efetivamente utilizados para otimizar operações e impulsionar o crescimento do negócio.',
       bgImg: `bg-[url('assets/img/produto-2.webp')]`
     },

@@ -28,10 +28,10 @@ export const SERVICOS: Servico[] = [
     slug: 'automacao-de-processos-rpa',
     nome: 'Automação de processos (RPA)',
     tituloSeo: 'Automação de Processos e RPA | Automaxia',
-    descricaoSeo: 'Hiperautomação com RPA e IA: descobrimos quais processos automatizar e colocamos robôs para fazer o trabalho repetitivo e burocrático da sua empresa.',
+    descricaoSeo: 'Automação de processos com RPA e IA: identificamos o que vale automatizar e colocamos robôs para fazer o trabalho repetitivo da sua empresa.',
     h1: 'Automação de processos com RPA e hiperautomação',
     intro: 'Deixe o trabalho repetitivo e burocrático com os robôs e libere sua equipe para o que exige inteligência humana. '
-      + 'A Automaxia identifica os processos com maior potencial de automação e os coloca para rodar com RPA, '
+      + 'A Automaxia identifica os processos com maior potencial de automação e os automatiza combinando RPA, '
       + 'inteligência artificial e integração de dados.',
     secoes: [
       {
@@ -44,8 +44,8 @@ export const SERVICOS: Servico[] = [
           },
           {
             titulo: 'Automação com RPA',
-            texto: 'Desenvolvemos robôs de software que executam tarefas em sistemas, planilhas, portais e e-mails, '
-              + 'do mesmo jeito que uma pessoa faria, só que sem pausa.',
+            texto: 'Desenvolvemos robôs de software que executam tarefas em sistemas, planilhas, portais e e-mails '
+              + 'seguindo os mesmos passos de uma pessoa, com rapidez e sem pausas.',
           },
           {
             titulo: 'Hiperautomação',
@@ -54,8 +54,8 @@ export const SERVICOS: Servico[] = [
           },
           {
             titulo: 'Operação e escala',
-            texto: 'Acompanhamos os robôs em produção e ajustamos conforme a demanda muda, para a automação continuar '
-              + 'entregando resultado.',
+            texto: 'Acompanhamos os robôs em produção e fazemos ajustes quando os processos ou a demanda mudam, '
+              + 'para que a automação continue entregando resultado.',
           },
         ],
       },
@@ -70,7 +70,7 @@ export const SERVICOS: Servico[] = [
           {
             titulo: 'Botfarm',
             texto: 'Fazenda de robôs para otimizar operações, reduzir custos e melhorar a experiência do cliente, '
-              + 'mantendo a operação ágil quando a demanda dos robôs muda.',
+              + 'com capacidade de acompanhar a variação de demanda.',
           },
         ],
       },
@@ -84,27 +84,27 @@ export const SERVICOS: Servico[] = [
     descricaoSeo: 'Automatize o primeiro atendimento no WhatsApp e no Instagram com IA generativa: triagem, coleta de dados, agendamentos e integração com seus sistemas.',
     h1: 'Primeiro atendimento com IA no WhatsApp e no Instagram',
     intro: 'Automatizamos o primeiro contato com seus clientes usando IA generativa integrada ao WhatsApp Business '
-      + 'e ao Instagram. O assistente faz a triagem, coleta os dados e conversa com os seus sistemas internos, '
-      + 'para acelerar agendamentos, cadastros e respostas a perguntas frequentes.',
+      + 'e ao Instagram. O assistente faz a triagem, coleta os dados e se integra aos seus sistemas internos '
+      + 'para agilizar agendamentos, cadastros e respostas a perguntas frequentes.',
     secoes: [
       {
         titulo: 'O que o assistente faz',
         itens: [
           {
             titulo: 'Triagem',
-            texto: 'Entende o que o cliente precisa e direciona a conversa para o fluxo certo ou para a pessoa certa da equipe.',
+            texto: 'Entende o que o cliente precisa e encaminha a conversa para o fluxo certo ou para a pessoa certa da equipe.',
           },
           {
             titulo: 'Coleta de dados',
-            texto: 'Pede e organiza as informações necessárias para o atendimento, sem formulários longos.',
+            texto: 'Pede e organiza, na própria conversa, as informações necessárias para o atendimento.',
           },
           {
             titulo: 'Integração com seus sistemas',
-            texto: 'Consulta e registra informações nos sistemas internos para fazer agendamentos e cadastros na própria conversa.',
+            texto: 'Consulta e registra informações nos seus sistemas para concluir agendamentos e cadastros sem sair do chat.',
           },
           {
             titulo: 'Perguntas frequentes',
-            texto: 'Responde às dúvidas mais comuns com IA generativa, a qualquer hora.',
+            texto: 'Responde às dúvidas mais comuns com IA generativa, inclusive fora do horário comercial.',
           },
         ],
       },
@@ -124,8 +124,9 @@ export const SERVICOS: Servico[] = [
     tituloSeo: 'Agentes de IA para Empresas | Automaxia',
     descricaoSeo: 'Agentes de IA que executam tarefas autônomas ou colaborativas nos processos da sua empresa, combinando IA generativa, machine learning e automação.',
     h1: 'Agentes de IA para os processos da sua empresa',
-    intro: 'Agentes de IA executam tarefas de forma autônoma ou em colaboração com a sua equipe. Eles combinam '
-      + 'IA generativa, machine learning e automação para dar escala, velocidade e inteligência à operação.',
+    intro: 'Agentes de IA são sistemas que executam tarefas de forma autônoma ou em colaboração com a sua equipe. '
+      + 'Eles combinam IA generativa, machine learning e automação para dar escala, velocidade e inteligência '
+      + 'aos processos de negócio.',
     secoes: [
       {
         titulo: 'CortexAI: fazenda de agentes de IA',
@@ -136,15 +137,15 @@ export const SERVICOS: Servico[] = [
         itens: [
           {
             titulo: 'Criação',
-            texto: 'Desenhamos cada agente para uma tarefa de negócio definida, com acesso apenas aos dados e sistemas de que precisa.',
+            texto: 'Cada agente é desenhado para uma tarefa de negócio bem definida e acessa apenas os dados e sistemas de que precisa.',
           },
           {
             titulo: 'Orquestração',
-            texto: 'Coordenamos vários agentes trabalhando juntos, cada um com seu papel no processo.',
+            texto: 'Vários agentes trabalham em conjunto, cada um com o seu papel no processo.',
           },
           {
             titulo: 'Operação',
-            texto: 'Mantemos os agentes rodando e acompanhamos o resultado em produção.',
+            texto: 'Os agentes ficam em produção, com acompanhamento contínuo dos resultados.',
           },
         ],
       },
@@ -154,11 +155,11 @@ export const SERVICOS: Servico[] = [
   {
     slug: 'dados-bi-e-inteligencia-artificial',
     nome: 'Dados, BI e IA',
-    tituloSeo: 'Dados, Business Intelligence e Inteligência Artificial | Automaxia',
+    tituloSeo: 'Dados, BI e Inteligência Artificial | Automaxia',
     descricaoSeo: 'Pipelines de dados, business intelligence, dashboards gerados por IA e modelos de machine learning para transformar seus dados em decisões.',
     h1: 'Dados, business intelligence e inteligência artificial',
-    intro: 'Sem modismos: usamos as melhores tecnologias para que os dados que a sua empresa coleta e gera '
-      + 'virem decisões. Da ingestão dos dados ao modelo de IA em produção.',
+    intro: 'Sem modismos: usamos tecnologias consolidadas para transformar os dados que a sua empresa coleta '
+      + 'e gera em decisões, da ingestão dos dados ao modelo de IA em produção.',
     secoes: [
       {
         titulo: 'O que fazemos',
@@ -169,11 +170,11 @@ export const SERVICOS: Servico[] = [
           },
           {
             titulo: 'Business intelligence',
-            texto: 'Painéis e indicadores para acompanhar a operação e encontrar oportunidades.',
+            texto: 'Criamos painéis e indicadores para acompanhar a operação e encontrar oportunidades.',
           },
           {
             titulo: 'Dashboards generativos',
-            texto: 'Usamos IA para gerar gráficos automaticamente e extrair insights, com painéis que se adaptam às necessidades do negócio.',
+            texto: 'A IA gera gráficos e insights automaticamente, em painéis que se adaptam às necessidades do negócio.',
           },
           {
             titulo: 'Modelos de IA',
@@ -186,13 +187,13 @@ export const SERVICOS: Servico[] = [
         itens: [
           {
             titulo: 'DataVibe AI',
-            texto: 'Plataforma que permite que qualquer pessoa, com ou sem experiência técnica, desenvolva modelos de IA. '
-              + 'Com interface guiada por IA generativa, conduz todas as etapas, da ingestão de dados à explicabilidade.',
+            texto: 'Plataforma que permite a qualquer pessoa, com ou sem experiência técnica, desenvolver modelos de IA. '
+              + 'Com uma interface guiada por IA generativa, conduz todas as etapas, da ingestão dos dados à explicabilidade do modelo.',
           },
           {
             titulo: 'Botanalytics (Datalake)',
             texto: 'Módulo de análise que reúne práticas e tecnologias para que os dados da sua organização sejam usados '
-              + 'para otimizar operações e impulsionar o crescimento.',
+              + 'para otimizar operações e impulsionar o crescimento do negócio.',
           },
         ],
       },
@@ -206,24 +207,24 @@ export const SERVICOS: Servico[] = [
     descricaoSeo: 'Governança, integração e privacidade de dados conforme a LGPD, como base para projetos de automação e inteligência artificial seguros.',
     h1: 'LGPD e governança de dados',
     intro: 'Projetos de automação e de inteligência artificial dependem de dados bem cuidados. Somos especialistas '
-      + 'em governança, integração e enriquecimento de dados, além de cuidar da segurança e da privacidade '
-      + 'das suas informações, de acordo com a LGPD.',
+      + 'em governança, integração e enriquecimento de dados, e cuidamos da segurança e da privacidade '
+      + 'das suas informações de acordo com a LGPD.',
     secoes: [
       {
         titulo: 'O que fazemos',
         itens: [
           {
             titulo: 'Governança de dados',
-            texto: 'Definimos onde estão os dados, quem é responsável por eles e como podem ser usados.',
+            texto: 'Mapeamos onde estão os dados e definimos quem é responsável por eles e como podem ser usados.',
           },
           {
             titulo: 'Integração e enriquecimento',
-            texto: 'Conectamos as fontes de dados da empresa e melhoramos a qualidade da informação.',
+            texto: 'Conectamos as fontes de dados da empresa e melhoramos a qualidade e a consistência das informações.',
           },
           {
             titulo: 'Privacidade e LGPD',
-            texto: 'Ajudamos a adequar o tratamento de dados pessoais à Lei Geral de Proteção de Dados, '
-              + 'inclusive dentro de automações e modelos de IA.',
+            texto: 'Ajudamos a adequar o tratamento de dados pessoais à Lei Geral de Proteção de Dados (LGPD), '
+              + 'inclusive em automações e modelos de IA.',
           },
           {
             titulo: 'Segurança da informação',

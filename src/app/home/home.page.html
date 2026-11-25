@@ -6,32 +6,32 @@
       </div>
       <div class="flex w-[20%] justify-end items-center mt-1 mr-4">
         <ion-icon name="linkedin"
-                  class="mr-2 text-xl cursor-pointer text-primary-3 hover:text-offwhite"
-                  (click)="navToLinkedin()"></ion-icon>
+          class="mr-2 text-xl cursor-pointer text-primary-3 hover:text-offwhite"
+        (click)="navToLinkedin()"></ion-icon>
         <ion-icon name="instagram" class="text-lg cursor-pointer text-primary-3 hover:text-offwhite"
-                  (click)="navToInstagram()"></ion-icon>
+        (click)="navToInstagram()"></ion-icon>
       </div>
     </div>
 
     <div class="flex justify-center wrapper-buttons">
       <button (click)="irParaSessao('servicos')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Serviços
       </button>
       <button (click)="irParaSessao('solucoes')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Soluções
       </button>
       <button (click)="irParaSessao('parceiros')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Parceiros
       </button>
       <button (click)="irParaSessao('sobre')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Sobre
       </button>
       <button (click)="irParaSessao('contato')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Contato
       </button>
     </div>
@@ -44,33 +44,33 @@
 
     <div class="flex items-end justify-center wrapper-buttons">
       <button (click)="irParaSessao('servicos')"
-              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Serviços
       </button>
       <button (click)="irParaSessao('solucoes')"
-              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Soluções
       </button>
       <button (click)="irParaSessao('parceiros')"
-              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Parceiros
       </button>
       <button (click)="irParaSessao('sobre')"
-              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Sobre
       </button>
       <button (click)="irParaSessao('contato')"
-              class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
+        class="text-lg font-bold no-underline normal-case btn btn-link text-primary-3 hover:text-offwhite">
         Contato
       </button>
     </div>
 
     <div class="flex items-center justify-end mt-1 mr-4">
       <ion-icon name="linkedin"
-                class="mr-2 text-4xl cursor-pointer text-primary-3 hover:text-offwhite"
-                (click)="navToLinkedin()"></ion-icon>
+        class="mr-2 text-4xl cursor-pointer text-primary-3 hover:text-offwhite"
+      (click)="navToLinkedin()"></ion-icon>
       <ion-icon name="instagram" class="text-4xl cursor-pointer text-primary-3 hover:text-offwhite"
-                (click)="navToInstagram()"></ion-icon>
+      (click)="navToInstagram()"></ion-icon>
     </div>
   </div>
 
@@ -79,10 +79,10 @@
     <div class="content-center justify-center h-full carousel-item" #home>
       <div class="relative w-full h-full">
         <video oncanplay="this.play()" onloadedmetadata="this.muted = true" src="/assets/video-2.mp4" poster="/assets/img/video-2-poster.jpg" playsinline preload="metadata"
-               autoplay
-               loop
-               muted
-               class="absolute z-10 object-cover w-full h-full">
+          autoplay
+          loop
+          muted
+          class="absolute z-10 object-cover w-full h-full">
           <source type="video/mov"/>
         </video>
         <div class="relative z-20 w-full h-full bg-black bg-opacity-50 ">
@@ -117,23 +117,26 @@
           <ng-container>
             <swiper-container [slidesPerView]="slidesPerView" autoplay-delay="4000" rewind="true" navigation="true" pagination="true" class="w-full desktop:h-[600px] mobile:h-[380px]">
 
-              <swiper-slide *ngFor="let item of servicosInfo"
-                            class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
-                <a [routerLink]="item.link || null" class="block card-link" [attr.aria-label]="item.link ? 'Saiba mais sobre ' + item.titulo : null">
-                <ion-card class="bg-black max-w-[360px] max-h-[403px] w-[360px] h-[403px] mobile:max-h-[370px]">
-                  <div class="w-[100%] h-[200px] mobile:h-[120px] bg-cover" [ngClass]="item.bgImg">
-                  </div>
-                  <ion-card-header>
-                    <ion-card-title class="text-primary-3">{{item.titulo}}<span *ngIf="item.link" aria-hidden="true"> →</span></ion-card-title>
-                    <ion-card-subtitle>{{item.subTitulo}}</ion-card-subtitle>
-                  </ion-card-header>
-
-                  <ion-card-content class="text-white mobile:text-sm">
-                    {{item.descricao}}
-                  </ion-card-content>
-                </ion-card>
-                </a>
-              </swiper-slide>
+              @for (item of servicosInfo; track item) {
+                <swiper-slide
+                  class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
+                  <a [routerLink]="item.link || null" class="block card-link" [attr.aria-label]="item.link ? 'Saiba mais sobre ' + item.titulo : null">
+                    <ion-card class="bg-black max-w-[360px] max-h-[403px] w-[360px] h-[403px] mobile:max-h-[370px]">
+                      <div class="w-[100%] h-[200px] mobile:h-[120px] bg-cover" [ngClass]="item.bgImg">
+                      </div>
+                      <ion-card-header>
+                        <ion-card-title class="text-primary-3">{{item.titulo}}@if (item.link) {
+                          <span aria-hidden="true"> →</span>
+                        }</ion-card-title>
+                        <ion-card-subtitle>{{item.subTitulo}}</ion-card-subtitle>
+                      </ion-card-header>
+                      <ion-card-content class="text-white mobile:text-sm">
+                        {{item.descricao}}
+                      </ion-card-content>
+                    </ion-card>
+                  </a>
+                </swiper-slide>
+              }
             </swiper-container>
           </ng-container>
 
@@ -147,10 +150,10 @@
     <div #sobre class="content-center justify-center h-full carousel-item">
       <div class="relative w-full h-full bg-black bg-opacity-50">
         <video oncanplay="this.play()" onloadedmetadata="this.muted = true" src="/assets/video-1.mp4" poster="/assets/img/video-1-poster.jpg" playsinline preload="metadata"
-               autoplay
-               loop
-               muted
-               class="absolute z-10 object-cover w-full h-full">
+          autoplay
+          loop
+          muted
+          class="absolute z-10 object-cover w-full h-full">
           <source type="video/mov"/>
         </video>
         <div class="relative z-20 w-full h-full bg-[rgba(19,10,6,0.80)]">
@@ -167,180 +170,190 @@
   </ng-container>
 
   <!-- soluções -->
-<ng-container #paginaSolucoes>
-  <div class="flex flex-col content-center justify-center h-full carousel-item" #solucoes>
-    <style>
-      /* Ajustar posição da paginação do swiper de solucoes */
-      .solucoes-swiper .swiper-pagination {
+  <ng-container #paginaSolucoes>
+    <div class="flex flex-col content-center justify-center h-full carousel-item" #solucoes>
+      <style>
+        /* Ajustar posição da paginação do swiper de solucoes */
+        .solucoes-swiper .swiper-pagination {
         bottom: -60px !important;
         position: relative !important;
       }
       .solucoes-swiper-mobile .swiper-pagination {
-        bottom: -50px !important;
-        position: relative !important;
-      }
-      /* Garantir que o container tenha espaço suficiente */
-      .solucoes-swiper {
-        padding-bottom: 70px !important;
-      }
-      .solucoes-swiper-mobile {
-        padding-bottom: 60px !important;
-      }
-    </style>
-    <div class="flex flex-col pt-20" style="padding-top: 200px;">
-      <h2 class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">
-        Soluções<span class="animate-ping" aria-hidden="true">|</span>
-      </h2>
-      <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
-        Temos uma linha completa de soluções próprias para desenvolver
-        sua Automação ou mesmo projeto de Inteligência Artificial.
-      </div>
+      bottom: -50px !important;
+      position: relative !important;
+    }
+    /* Garantir que o container tenha espaço suficiente */
+    .solucoes-swiper {
+    padding-bottom: 70px !important;
+  }
+  .solucoes-swiper-mobile {
+  padding-bottom: 60px !important;
+}
+</style>
+<div class="flex flex-col pt-20" style="padding-top: 200px;">
+  <h2 class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">
+    Soluções<span class="animate-ping" aria-hidden="true">|</span>
+  </h2>
+  <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
+    Temos uma linha completa de soluções próprias para desenvolver
+    sua Automação ou mesmo projeto de Inteligência Artificial.
+  </div>
+</div>
+<div class="flex flex-row items-center justify-center w-full px-4 pt-10 pb-24 mobile:pt-2 mobile:px-0">
+  <div class="mobile:grid mobile:grid-cols-1 mobile:w-full desktop:flex desktop:w-full">
+    <div class="w-full mt-4 desktop:hidden">
+      <swiper-container class="solucoes-swiper-mobile" autoplay-delay="3000" rewind="true" slides-per-view="1" navigation="true" pagination="true" style="padding-bottom: 60px; height: 540px;">
+
+        @for (item of solucoesInfo; track item) {
+          <swiper-slide class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
+            <ion-card class="bg-black max-w-[360px] max-h-[470px] w-[360px] h-[470px] ">
+              <div class="w-[100%] h-[200px] mobile:h-[150px] bg-cover" [ngClass]="item.bgImg">
+              </div>
+              <ion-card-header>
+                <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
+                <ion-card-subtitle>{{item.subTitulo}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="text-white mobile:text-sm">
+                {{item.descricao}}
+                @if (item.link) {
+                  <a [routerLink]="item.link" class="block mt-2 underline text-primary-3 hover:text-offwhite">Saiba mais</a>
+                }
+              </ion-card-content>
+            </ion-card>
+          </swiper-slide>
+        }
+      </swiper-container>
     </div>
-    <div class="flex flex-row items-center justify-center w-full px-4 pt-10 pb-24 mobile:pt-2 mobile:px-0">
-      <div class="mobile:grid mobile:grid-cols-1 mobile:w-full desktop:flex desktop:w-full">
-        <div class="w-full mt-4 desktop:hidden">
-          <swiper-container class="solucoes-swiper-mobile" autoplay-delay="3000" rewind="true" slides-per-view="1" navigation="true" pagination="true" style="padding-bottom: 60px; height: 540px;">
 
-            <swiper-slide *ngFor="let item of solucoesInfo" class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
-              <ion-card class="bg-black max-w-[360px] max-h-[470px] w-[360px] h-[470px] ">
-                <div class="w-[100%] h-[200px] mobile:h-[150px] bg-cover" [ngClass]="item.bgImg">
-                </div>
-                <ion-card-header>
-                  <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
-                  <ion-card-subtitle>{{item.subTitulo}}</ion-card-subtitle>
-                </ion-card-header>
+    <!-- Desktop Swiper -->
+    <div class="w-full mobile:hidden">
+      <swiper-container class="solucoes-swiper" [slidesPerView]="slidesPerViewSolucoes" autoplay-delay="4000" rewind="true" navigation="true" pagination="true" style="padding-bottom: 70px; height: 690px;">
 
-                <ion-card-content class="text-white mobile:text-sm">
-                  {{item.descricao}}
-                  <a *ngIf="item.link" [routerLink]="item.link" class="block mt-2 underline text-primary-3 hover:text-offwhite">Saiba mais</a>
-                </ion-card-content>
-              </ion-card>
-            </swiper-slide>
-          </swiper-container>
-        </div>
-
-        <!-- Desktop Swiper -->
-        <div class="w-full mobile:hidden">
-          <swiper-container class="solucoes-swiper" [slidesPerView]="slidesPerViewSolucoes" autoplay-delay="4000" rewind="true" navigation="true" pagination="true" style="padding-bottom: 70px; height: 690px;">
-
-            <swiper-slide *ngFor="let item of solucoesInfo" class="flex items-center justify-center px-4 bg-center bg-cover">
-              <ion-card class="bg-black max-w-[380px] max-h-[500px] w-[380px] h-[500px] bg-cover" [ngClass]="item.bgImg">
-                <div class="w-[100%] h-[200px]">
-                </div>
-                <ion-card-header class="p-4 bg-black bg-opacity-90">
-                  <ion-card-title class="text-xl text-primary-3">{{item.titulo}}</ion-card-title>
-                  <ion-card-subtitle class="text-base text-primary-3">{{item.subTitulo}}</ion-card-subtitle>
-                </ion-card-header>
-
-                <ion-card-content class="text-white text-sm bg-black bg-opacity-90 p-4 h-[200px] overflow-y-auto">
-                  {{item.descricao}}
-                  <a *ngIf="item.link" [routerLink]="item.link" class="block mt-2 underline text-primary-3 hover:text-offwhite">Saiba mais</a>
-                </ion-card-content>
-              </ion-card>
-            </swiper-slide>
-          </swiper-container>
-        </div>
-      </div>
+        @for (item of solucoesInfo; track item) {
+          <swiper-slide class="flex items-center justify-center px-4 bg-center bg-cover">
+            <ion-card class="bg-black max-w-[380px] max-h-[500px] w-[380px] h-[500px] bg-cover" [ngClass]="item.bgImg">
+              <div class="w-[100%] h-[200px]">
+              </div>
+              <ion-card-header class="p-4 bg-black bg-opacity-90">
+                <ion-card-title class="text-xl text-primary-3">{{item.titulo}}</ion-card-title>
+                <ion-card-subtitle class="text-base text-primary-3">{{item.subTitulo}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content class="text-white text-sm bg-black bg-opacity-90 p-4 h-[200px] overflow-y-auto">
+                {{item.descricao}}
+                @if (item.link) {
+                  <a [routerLink]="item.link" class="block mt-2 underline text-primary-3 hover:text-offwhite">Saiba mais</a>
+                }
+              </ion-card-content>
+            </ion-card>
+          </swiper-slide>
+        }
+      </swiper-container>
     </div>
   </div>
+</div>
+</div>
 </ng-container>
 
-  <!-- parceiros -->
-  <ng-container #paginaParceiros>
-    <div class="flex flex-col content-center justify-center h-full carousel-item" #parceiros>
-      <div class="flex flex-col pt-20">
-        <h2 class="relative text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">
-          Parceiros, Tecnologias e Clientes<span class="animate-ping" aria-hidden="true">|</span>
-        </h2>
-        <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
-          Além dos nossos soluções, temos parceiros fortes e usamos
-          tecnologias de<br/> mercado já validadas e testadas por milhares de clientes pelo mundo.
-        </div>
+<!-- parceiros -->
+<ng-container #paginaParceiros>
+  <div class="flex flex-col content-center justify-center h-full carousel-item" #parceiros>
+    <div class="flex flex-col pt-20">
+      <h2 class="relative text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">
+        Parceiros, Tecnologias e Clientes<span class="animate-ping" aria-hidden="true">|</span>
+      </h2>
+      <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
+        Além dos nossos soluções, temos parceiros fortes e usamos
+        tecnologias de<br/> mercado já validadas e testadas por milhares de clientes pelo mundo.
       </div>
+    </div>
 
-      <div class="pt-20 mobile:pt-6 px-14 mobile:px-0">
-        <ion-row class="mobile:px-4">
-          <ion-col *ngFor="let item of parceirosInfo" class="border border-gray-500 mobile:max-h-[42px]">
+    <div class="pt-20 mobile:pt-6 px-14 mobile:px-0">
+      <ion-row class="mobile:px-4">
+        @for (item of parceirosInfo; track item) {
+          <ion-col class="border border-gray-500 mobile:max-h-[42px]">
             <div class="flex flex-col items-center justify-center h-full p-2 bg-grayscale-black">
               <img class="h-[54px] w-[54px]" src="assets/img/{{item.icone}}" alt="">
               <ion-text class="text-offwhite text-base font-bold leading-6 tracking-[0.1px] mt-4 mobile:hidden text-center">{{item.nome}}</ion-text>
             </div>
           </ion-col>
-        </ion-row>
+        }
+      </ion-row>
 
-        <ion-row class="mt-4 mobile:hidden">
-          <ion-col *ngFor="let item of clientesInfo" class="justify-center items-center flex flex-col text-center min-w-[200px]">
+      <ion-row class="mt-4 mobile:hidden">
+        @for (item of clientesInfo; track item) {
+          <ion-col class="justify-center items-center flex flex-col text-center min-w-[200px]">
             <ion-card class="bg-[#130A06] max-w-[360px] max-h-[403px] w-[360px] h-[403px] mobile:h-[250px] justify-center items-center flex flex-col">
               <img [src]="item.img" class="h-[60px] mobile:h-[32px] flex">
               <ion-card-header>
                 <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
               </ion-card-header>
-
               <ion-card-content class="text-white mobile:text-sm">
                 {{item.descricao}}
               </ion-card-content>
             </ion-card>
           </ion-col>
-        </ion-row>
-        <div class="desktop:hidden">
-          <swiper-container [slidesPerView]="1" autoplay-delay="3000" rewind="true" navigation="true" pagination="true" class="w-full">
+        }
+      </ion-row>
+      <div class="desktop:hidden">
+        <swiper-container [slidesPerView]="1" autoplay-delay="3000" rewind="true" navigation="true" pagination="true" class="w-full">
 
-            <swiper-slide *ngFor="let item of clientesInfo" class="flex flex-col items-center justify-center px-8 text-center">
+          @for (item of clientesInfo; track item) {
+            <swiper-slide class="flex flex-col items-center justify-center px-8 text-center">
               <ion-card class="bg-[#130A06] w-[360px] mobile:w-[300px] justify-center items-center flex flex-col">
                 <img [src]="item.img" class="h-[42px] flex mobile:hidden">
                 <ion-card-header>
                   <ion-card-title class="text-primary-3">{{item.titulo}}</ion-card-title>
                 </ion-card-header>
-
                 <ion-card-content class="text-white mobile:text-sm">
                   {{item.descricao}}
                 </ion-card-content>
               </ion-card>
             </swiper-slide>
-          </swiper-container>
-        </div>
+          }
+        </swiper-container>
       </div>
     </div>
-  </ng-container>
+  </div>
+</ng-container>
 
-  <!-- contato -->
-  <ng-container #paginaContato>
-    <div class="flex flex-col content-center justify-center h-auto min-h-full carousel-item" #contato>
-      <div class="flex flex-col pt-20">
-        <h2 class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-4">
-          Contato<span class="animate-ping" aria-hidden="true">|</span>
-        </h2>
-        <p class="relative max-w-3xl px-6 mx-auto mt-4 text-2xl leading-relaxed text-center text-primary-3 mobile:mt-1 mobile:text-[15px] mobile:leading-6">
-          Quer entender como podemos ajudar? Precisa de apoio para escalar
-          seu negócio? Fale conosco, estamos prontos para ajudar.
-        </p>
-      </div>
+<!-- contato -->
+<ng-container #paginaContato>
+  <div class="flex flex-col content-center justify-center h-auto min-h-full carousel-item" #contato>
+    <div class="flex flex-col pt-20">
+      <h2 class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-4">
+        Contato<span class="animate-ping" aria-hidden="true">|</span>
+      </h2>
+      <p class="relative max-w-3xl px-6 mx-auto mt-4 text-2xl leading-relaxed text-center text-primary-3 mobile:mt-1 mobile:text-[15px] mobile:leading-6">
+        Quer entender como podemos ajudar? Precisa de apoio para escalar
+        seu negócio? Fale conosco, estamos prontos para ajudar.
+      </p>
+    </div>
 
-      <div class="flex flex-col items-center w-full pt-16 mobile:pt-4">
-        <form [formGroup]="emailForm" class="flex w-[100%] justify-center ml-2 mr-2">
-          <div class="flex flex-col w-[100%] max-w-[600px] formulario">
-            <!-- Armadilha para robôs: invisível e fora da ordem de tabulação; pessoas não preenchem. -->
-            <input type="text" formControlName="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
-                   class="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none">
+    <div class="flex flex-col items-center w-full pt-16 mobile:pt-4">
+      <form [formGroup]="emailForm" class="flex w-[100%] justify-center ml-2 mr-2">
+        <div class="flex flex-col w-[100%] max-w-[600px] formulario">
+          <!-- Armadilha para robôs: invisível e fora da ordem de tabulação; pessoas não preenchem. -->
+          <input type="text" formControlName="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+            class="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none">
 
             <div class="automaxia-input">
               <ion-item>
                 <ion-input label="Nome" label-placement="floating" color="light" type="text" id="nome"
-                           formControlName="nome"></ion-input>
+                formControlName="nome"></ion-input>
               </ion-item>
             </div>
 
             <div class="automaxia-input">
               <ion-item>
                 <ion-input label="E-mail" type="email" label-placement="floating" color="light" id="email"
-                           formControlName="email"></ion-input>
+                formControlName="email"></ion-input>
               </ion-item>
             </div>
 
             <div class="mb-6 automaxia-input">
               <ion-item>
                 <ion-input label="Telefone" type="tel" label-placement="floating" color="light"
-                           id="telefone" [brmasker]="{ mask: '(00) 00000-0000', type: 'num', len: 15 }" formControlName="telefone"></ion-input>
+                id="telefone" [brmasker]="{ mask: '(00) 00000-0000', type: 'num', len: 15 }" formControlName="telefone"></ion-input>
               </ion-item>
             </div>
 
@@ -370,7 +383,7 @@
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="linkedin-fill" class="text-[32px] mr-2"></ion-icon>
               <a href="https://www.linkedin.com/company/automaxia/?viewAsMember=true" target="_blank"
-                 class="hover:underline hover:text-secondary-0">linkedin.com/automaxia</a>
+              class="hover:underline hover:text-secondary-0">linkedin.com/automaxia</a>
             </div>
           </div>
 
@@ -404,7 +417,9 @@
 
         <nav aria-label="Serviços" class="flex flex-col gap-3 ml-24 mobile:ml-0 mobile:mt-10 text-grayscale-3 font-['Roboto']">
           <span class="text-lg font-bold">Serviços</span>
-          <a *ngFor="let s of paginasServicos" [routerLink]="'/' + s.slug" class="hover:underline hover:text-secondary-0">{{ s.nome }}</a>
+          @for (s of paginasServicos; track s) {
+            <a [routerLink]="'/' + s.slug" class="hover:underline hover:text-secondary-0">{{ s.nome }}</a>
+          }
         </nav>
       </div>
     </div>

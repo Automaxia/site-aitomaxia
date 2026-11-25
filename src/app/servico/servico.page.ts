@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SERVICOS, Servico, SERVICOS_POR_SLUG } from '../../shared/constants/servicos';
 
@@ -6,6 +6,7 @@ import { SERVICOS, Servico, SERVICOS_POR_SLUG } from '../../shared/constants/ser
     selector: 'automaxia-servico',
     templateUrl: './servico.page.html',
     styleUrls: ['./servico.page.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 export class ServicoPage {

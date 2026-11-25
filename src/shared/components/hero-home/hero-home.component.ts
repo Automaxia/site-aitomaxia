@@ -1,14 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'automaxia-hero-home',
   templateUrl: './hero-home.component.html',
   styleUrls: ['./hero-home.component.scss'],
 })
-export class HeroHomeComponent  implements OnInit {
+export class HeroHomeComponent  {
 
   constructor() { }
-
-  ngOnInit() {}
 
 }

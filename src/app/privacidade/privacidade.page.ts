@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AnalyticsService } from '../../shared/services/analytics.service';
 
 @Component({
@@ -6,12 +6,9 @@ import { AnalyticsService } from '../../shared/services/analytics.service';
   templateUrl: './privacidade.page.html',
   styleUrls: ['./privacidade.page.scss'],
 })
-export class PrivacidadePage implements OnInit {
+export class PrivacidadePage {
 
   constructor(private readonly analytics: AnalyticsService) { }
-
-  ngOnInit() {
-  }
 
   alterarCookies(): void {
     this.analytics.abrirPreferencias();

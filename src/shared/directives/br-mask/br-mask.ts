@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Host, HostListener, Injectable, Input, OnInit, Optional, SkipSelf } from '@angular/core';
+import { Directive, ElementRef, Host, HostListener, Input, OnInit, Optional, SkipSelf } from '@angular/core';
 import { AbstractControl, FormControl, FormGroupDirective } from '@angular/forms';
 
 export class BrMaskModel {
@@ -20,10 +20,10 @@ export class BrMaskModel {
 }
 
 @Directive({
+  // Nome histórico usado nos templates ([brmasker]); renomear só por estilo não compensa.
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[brmasker]'
 })
-
-@Injectable()
 export class BrMaskDirective implements OnInit {
   @Input() brmasker: BrMaskModel = new BrMaskModel();
   @Input() formControlName: string;

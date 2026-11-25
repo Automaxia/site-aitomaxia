@@ -249,7 +249,7 @@ export class HomePage {
 
       // Mostrar erro para o usuário
       const toast = await this.toastController.create({
-        message: '❌ Erro ao enviar mensagem. Tente novamente ou entre em contato pelo telefone.',
+        message: '❌ Não foi possível enviar agora. Tente de novo em instantes ou escreva para contato@automaxia.com.br.',
         duration: 5000,
         position: 'top',
         color: 'danger',

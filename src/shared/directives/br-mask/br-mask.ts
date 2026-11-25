@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Host, HostListener, Input, OnInit, Optional, SkipSelf } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit, inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroupDirective } from '@angular/forms';
 
 export class BrMaskModel {
@@ -26,6 +26,9 @@ export class BrMaskModel {
     standalone: false
 })
 export class BrMaskDirective implements OnInit {
+  private controlContainer = inject(FormGroupDirective, { optional: true, host: true, skipSelf: true });
+  private elementRef = inject(ElementRef);
+
   @Input() brmasker: BrMaskModel = new BrMaskModel();
   @Input() formControlName: string;
 
@@ -45,12 +48,6 @@ export class BrMaskDirective implements OnInit {
       this.setValueInFormControl(value, false);
     }
   }
-
-  constructor(
-    @Optional() @Host() @SkipSelf()
-    private controlContainer: FormGroupDirective,
-    private elementRef: ElementRef
-  ) { }
 
   ngOnInit(): void {
     if (!this.brmasker.type) {

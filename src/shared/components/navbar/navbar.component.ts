@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ScrollDetail } from '@ionic/angular';
+import { Component, inject } from '@angular/core';
+import { ScrollDetail } from '@ionic/angular/lazy';
 import { menuConfig } from '../../constants/menu';
 import { Router } from '@angular/router';
 
@@ -10,11 +10,15 @@ import { Router } from '@angular/router';
     standalone: false
 })
 export class NavbarComponent {
+  private router = inject(Router);
+
   isScrolled = false;
   initialPosition;
   activeRoute;
 
-  constructor(private router: Router) {
+  constructor() {
+    const router = this.router;
+
     this.activeRoute = router.url;
   }
 

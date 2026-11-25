@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AnalyticsService } from '../../services/analytics.service';
 
 @Component({
@@ -8,9 +8,9 @@ import { AnalyticsService } from '../../services/analytics.service';
     standalone: false
 })
 export class CookieBannerComponent {
-  readonly visivel$ = this.analytics.mostrarBanner$;
+  private analytics = inject(AnalyticsService);
 
-  constructor(private analytics: AnalyticsService) {}
+  readonly visivel$ = this.analytics.mostrarBanner$;
 
   aceitar(): void {
     this.analytics.aceitar();

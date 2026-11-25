@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BreakPointType, ResponsiveService } from '../shared/services/responsive.service';
 import { ROUTE } from '../shared/constants/route';
 import { Router } from '@angular/router';
@@ -15,12 +15,16 @@ register();
     standalone: false
 })
 export class AppComponent {
+	private responsiveService = inject(ResponsiveService);
+	private router = inject(Router);
+
 	tipoDispositivo: string;
 
-	constructor(private responsiveService: ResponsiveService,
-	            private router: Router,
-	            analytics: AnalyticsService,
-	            seo: SeoService) {
+	constructor() {
+		const responsiveService = this.responsiveService;
+		const analytics = inject(AnalyticsService);
+		const seo = inject(SeoService);
+
 		responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
 		analytics.iniciar();
 		seo.iniciar();

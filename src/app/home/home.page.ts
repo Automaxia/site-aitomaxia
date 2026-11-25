@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailService } from '../../shared/services/email.service';
@@ -7,7 +7,7 @@ import { SERVICOS } from '../../shared/constants/servicos';
 import { BreakPointType, ResponsiveService } from "../../shared/services/responsive.service";
 
 // ✅ ADICIONE estas importações do Ionic:
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular/lazy';
 
 function formatPhoneNumber(phoneNumber: any) {
   // Remover todos os caracteres não numéricos do número
@@ -33,6 +33,14 @@ function formatPhoneNumber(phoneNumber: any) {
     standalone: false
 })
 export class HomePage {
+  private readonly router = inject(Router);
+  private readonly fb = inject(FormBuilder);
+  private readonly email = inject(EmailService);
+  private readonly responsiveService = inject(ResponsiveService);
+  private readonly toastController = inject(ToastController);
+  private readonly loadingController = inject(LoadingController);
+  private readonly analytics = inject(AnalyticsService);
+
 
   tipoDispositivo = 'mobile';
   emailForm: FormGroup;
@@ -48,14 +56,7 @@ export class HomePage {
   @ViewChild('parceiros') parceiros: ElementRef;
 
 
-  constructor(
-    private readonly router: Router,
-    private readonly fb: FormBuilder,
-    private readonly email: EmailService,
-    private readonly responsiveService: ResponsiveService,
-    private readonly toastController: ToastController,
-    private readonly loadingController: LoadingController,
-    private readonly analytics: AnalyticsService) {
+  constructor() {
     this.responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],

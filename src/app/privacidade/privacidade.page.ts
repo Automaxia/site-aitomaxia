@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AnalyticsService } from '../../shared/services/analytics.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { AnalyticsService } from '../../shared/services/analytics.service';
     standalone: false
 })
 export class PrivacidadePage {
+  private readonly analytics = inject(AnalyticsService);
 
-  constructor(private readonly analytics: AnalyticsService) { }
 
   alterarCookies(): void {
     this.analytics.abrirPreferencias();

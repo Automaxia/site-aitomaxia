@@ -9,63 +9,29 @@ Automaxia
 
 ### Pré-requisitos:
 
-* [Node](https://nodejs.org) 18.18.2
-* [NPM](https://www.npmjs.com/) 9.8.1
-* [Angular CLI](https://github.com/angular/angular-cli) 16.2.2
+* [Node](https://nodejs.org) 26 LTS (ver `.nvmrc`; o Angular 22 aceita ^22.22.3, ^24.15 ou >=26)
+* npm (o projeto usa só npm; o `package-lock.json` é a fonte das versões)
 
+Versões principais (atualizadas em 25/11/2026): Angular 22, Ionic 9 (pela entrada `@ionic/angular/lazy`,
+API de módulos), TypeScript 6, ESLint 10 (`eslint.config.js`), Swiper 14, Tailwind 3 + daisyUI 3.
 
-```
-$ionic info
-
-Ionic:
-
-   Ionic CLI                     : 7.1.1 (/Users/evandro/.nvm/versions/node/v18.17.1/lib/node_modules/@ionic/cli)
-   Ionic Framework               : @ionic/angular 7.4.0
-   @angular-devkit/build-angular : 16.2.2
-   @angular-devkit/schematics    : 16.2.2
-   @angular/cli                  : 16.2.2
-   @ionic/angular-toolkit        : 9.0.0
-
-Capacitor:
-
-   Capacitor CLI      : 5.4.0
-   @capacitor/android : not installed
-   @capacitor/core    : 5.4.0
-   @capacitor/ios     : not installed
-
-Utility:
-
-   cordova-res : not installed globally
-   native-run  : 1.7.2
-
-System:
-
-   NodeJS : v18.18.2 (/Users/evandro/.nvm/versions/node/v18.18.2/bin/node)
-   npm    : 9.8.1
-   OS     : macOS Ventura
-```
+> O Ionic 9 avisa no console que o `IonicModule` está obsoleto. O site ainda usa NgModules; migrar para
+> componentes standalone (`provideIonicAngular`) é o próximo passo antes de uma versão do Ionic que remova a API.
 
 # Desenvolvimento
 
-Instale as dependências:
 ```
-$ npm install
-```
-Para iniciar um serviço local:
-
-```
-$ npm run start:local
+$ npm ci
+$ npm start            # ng serve em http://localhost:4200
+$ npx ng lint
 ```
 
 # Produção
 
-Instale as dependências:
+A imagem Docker (`Dockerfile`) faz `npm ci`, `ng build`, o pré-render das rotas públicas
+(`scripts/prerender.mjs`, com Chromium) e serve `www/` com `nginxinc/nginx-unprivileged` (sem root).
 
 ```
-$ npm install
-```
-E, então, execute:
-
-```
-$ npm run build --prod
+$ npm run build
+$ node scripts/prerender.mjs     # precisa de Chromium (CHROME=/caminho para trocar o binário)
 ```

@@ -59,9 +59,15 @@ export class HomePage {
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       nome: ['', Validators.required],
-      telefone: ['', Validators.required]
+      telefone: ['', Validators.required],
+      // Armadilha para robôs: campo invisível; pessoas não preenchem.
+      website: ['']
     });
   }
+
+  /** Intervalo mínimo entre dois envios do mesmo navegador. */
+  private static readonly INTERVALO_ENVIO_MS = 60_000;
+  private static readonly CHAVE_ULTIMO_ENVIO = 'automaxia_contato_ultimo_envio';
 
   readonly paginasServicos = SERVICOS;
 
@@ -168,6 +174,24 @@ export class HomePage {
       return;
     }
 
+    // Robô preencheu o campo invisível: finge sucesso e não envia nada.
+    if (formData.website) {
+      this.emailForm.reset();
+      const toast = await this.toastController.create({
+        message: '✅ Mensagem enviada com sucesso! Entraremos em contato em breve.',
+        duration: 4000, position: 'top', color: 'success', icon: 'checkmark-circle'
+      });
+      await toast.present();
+      return;
+    }
+
+    // Um envio por minuto por navegador.
+    const ultimoEnvio = Number(this.lerUltimoEnvio() || 0);
+    if (Date.now() - ultimoEnvio < HomePage.INTERVALO_ENVIO_MS) {
+      this.presentErrorToast('Você acabou de enviar uma mensagem. Aguarde um minuto para enviar outra.');
+      return;
+    }
+
     try {
       // Mostrar loading
       const loading = await this.loadingController.create({
@@ -176,59 +200,17 @@ export class HomePage {
       });
       await loading.present();
 
-      // Dados para envio
+      // Dados para envio (com tamanho máximo por campo)
       const dadosCliente = {
-        nome: formData.nome.trim(),
-        email: formData.email.trim().toLowerCase(),
-        telefone: formData.telefone
+        nome: String(formData.nome).trim().slice(0, 120),
+        email: String(formData.email).trim().toLowerCase().slice(0, 200),
+        telefone: String(formData.telefone).slice(0, 20)
       };
 
-      // Assunto personalizado
       const assunto = `Contato via site - ${dadosCliente.nome}`;
 
-      // Corpo do e-mail em HTML
-      const corpoEmail = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background-color: #130A06; color: #FFA500; padding: 20px; text-align: center;">
-          <h2>🤖 Novo Contato - Site Automaxia</h2>
-        </div>
-
-        <div style="padding: 20px; background-color: #f9f9f9;">
-          <h3 style="color: #333;">Informações do Cliente:</h3>
-
-          <table style="width: 100%; border-collapse: collapse;">
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Nome:</td>
-              <td style="padding: 10px;">${dadosCliente.nome}</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 10px; font-weight: bold; color: #FFA500;">E-mail:</td>
-              <td style="padding: 10px;">${dadosCliente.email}</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Telefone:</td>
-              <td style="padding: 10px;">${dadosCliente.telefone}</td>
-            </tr>
-            <tr style="border-bottom: 1px solid #ddd;">
-              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Data/Hora:</td>
-              <td style="padding: 10px;">${new Date().toLocaleString('pt-BR')}</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px; font-weight: bold; color: #FFA500;">Origem:</td>
-              <td style="padding: 10px;">Site Automaxia - Formulário de Contato</td>
-            </tr>
-          </table>
-        </div>
-
-        <div style="background-color: #130A06; color: #FFA500; padding: 15px; text-align: center; font-size: 14px;">
-          <p>📧 Este é um e-mail automático do sistema de contato da Automaxia</p>
-          <p>🔗 <strong>Responder para:</strong> ${dadosCliente.email}</p>
-        </div>
-      </div>
-    `;
-
-      // Tentar enviar o e-mail
-      const resultado = await this.email.envioemail(assunto, corpoEmail, dadosCliente);
+      // O conteúdo do e-mail é montado pelo template no EmailJS.
+      const resultado = await this.email.envioemail(assunto, dadosCliente);
 
       // Fechar loading
       await loading.dismiss();
@@ -249,13 +231,15 @@ export class HomePage {
 
         // Limpar formulário apenas em caso de sucesso
         this.emailForm.reset();
+        this.gravarUltimoEnvio();
       } else {
         // Erro no envio
-        throw new Error(resultado.error || 'Erro desconhecido no envio');
+        throw new Error('Falha no envio pelo EmailJS');
       }
 
     } catch (error) {
-      console.error('Erro ao enviar e-mail:', error);
+      // Sem dados pessoais no console.
+      console.error('Erro ao enviar o formulário de contato.');
 
       // Fechar loading se ainda estiver aberto
       const loading = await this.loadingController.getTop();
@@ -273,6 +257,14 @@ export class HomePage {
       });
       await toast.present();
     }
+  }
+
+  private lerUltimoEnvio(): string | null {
+    try { return localStorage.getItem(HomePage.CHAVE_ULTIMO_ENVIO); } catch { return null; }
+  }
+
+  private gravarUltimoEnvio(): void {
+    try { localStorage.setItem(HomePage.CHAVE_ULTIMO_ENVIO, String(Date.now())); } catch { /* navegação privada */ }
   }
 
   // Método auxiliar para validar e-mail

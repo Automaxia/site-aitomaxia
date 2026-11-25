@@ -1,108 +1,84 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
+export interface DadosContato {
+  nome: string;
+  email: string;
+  telefone: string;
+}
+
+/**
+ * Envio do formulário de contato pelo EmailJS (direto do navegador).
+ *
+ * Os IDs e a chave pública ficam visíveis no site por natureza do EmailJS. A proteção está no
+ * painel do EmailJS: o destinatário do template é fixo (contato@automaxia.com.br, conferido em
+ * 25/11/2026), a resposta automática está desligada e a API fora do navegador está bloqueada.
+ * Por isso NÃO enviamos destinatário daqui.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class EmailService {
 
-  // ✅ SUAS CONFIGURAÇÕES EMAILJS (já funcionando)
-  private emailJSConfig = {
+  private readonly emailJSConfig = {
     serviceId: 'service_akiqn9n',
     templateId: 'template_7oq5prv',
     publicKey: '9vwF_fkmZDLFTqQG8'
   };
 
-  constructor(private http: HttpClient) { }
-
-  /**
-   * 📧 MÉTODO PRINCIPAL - ENVIO SIMPLES E FUNCIONAL
-   */
-  async envioemail(subject: string, html_corpo: string, dados_cliente: any): Promise<any> {
+  async envioemail(subject: string, dados: DadosContato): Promise<{ success: boolean; error?: unknown }> {
     try {
-      console.log('🚀 Iniciando envio de e-mail...');
-      console.log('📋 Dados do cliente:', dados_cliente);
-
-      // Carregar EmailJS se necessário
       await this.loadEmailJS();
 
-      // Preparar dados para o template
+      // Nomes iguais aos usados no template do EmailJS ({{name}}, {{reply_to}}, ...).
       const templateParams = {
-        // ⚠️ ESTES NOMES DEVEM COINCIDIR COM SEU TEMPLATE EMAILJS
-        to_email: 'contato@automaxia.com.br',
-        subject: subject,
-        from_name: dados_cliente.nome,
-        from_email: dados_cliente.email,
-        phone: dados_cliente.telefone,
-        message: this.createSimpleMessage(dados_cliente),
-        reply_to: dados_cliente.email
+        subject,
+        name: dados.nome,
+        from_name: dados.nome,
+        from_email: dados.email,
+        phone: dados.telefone,
+        message: this.criarMensagem(dados),
+        reply_to: dados.email
       };
 
-      console.log('📤 Enviando com parâmetros:', templateParams);
-
-      // Enviar via EmailJS
-      const response = await (window as any).emailjs.send(
+      await (window as any).emailjs.send(
         this.emailJSConfig.serviceId,
         this.emailJSConfig.templateId,
         templateParams,
         this.emailJSConfig.publicKey
       );
-
-      console.log('✅ E-mail enviado com sucesso!', response);
-      return { success: true, data: response };
+      return { success: true };
 
     } catch (error) {
-      console.error('❌ Erro ao enviar e-mail:', error);
-      return { success: false, error: error };
+      // Sem dados pessoais no console: só o status devolvido pelo EmailJS, se houver.
+      console.error('EmailJS: falha no envio', (error as any)?.status ?? '');
+      return { success: false, error };
     }
   }
 
-  /**
-   * 📝 CRIAR MENSAGEM SIMPLES
-   */
-  private createSimpleMessage(dados: any): string {
-    return `
-🤖 NOVO CONTATO - SITE AUTOMAXIA
-
-👤 Nome: ${dados.nome}
-📧 E-mail: ${dados.email}
-📱 Telefone: ${dados.telefone}
-⏰ Data/Hora: ${new Date().toLocaleString('pt-BR')}
-🌐 Origem: Site Automaxia
-
----
-Este é um e-mail automático do formulário de contato.
-Responder para: ${dados.email}
-    `.trim();
+  private criarMensagem(dados: DadosContato): string {
+    return [
+      'Novo contato pelo site automaxia.com.br',
+      '',
+      `Nome: ${dados.nome}`,
+      `E-mail: ${dados.email}`,
+      `Telefone: ${dados.telefone}`,
+      `Data/hora: ${new Date().toLocaleString('pt-BR')}`,
+    ].join('\n');
   }
 
-  /**
-   * 📚 CARREGAR BIBLIOTECA EMAILJS
-   */
   private loadEmailJS(): Promise<void> {
     return new Promise((resolve, reject) => {
-      // Se já estiver carregado
       if (typeof (window as any).emailjs !== 'undefined') {
-        console.log('📚 EmailJS já está carregado');
         resolve();
         return;
       }
-
-      console.log('📦 Carregando EmailJS...');
-
-      // Carregar script
       const script = document.createElement('script');
       script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
       script.onload = () => {
-        // Inicializar
         (window as any).emailjs.init(this.emailJSConfig.publicKey);
-        console.log('✅ EmailJS carregado e inicializado');
         resolve();
       };
-      script.onerror = (error) => {
-        console.error('❌ Erro ao carregar EmailJS:', error);
-        reject(error);
-      };
+      script.onerror = (error) => reject(error);
       document.head.appendChild(script);
     });
   }

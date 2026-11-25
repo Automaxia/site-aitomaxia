@@ -319,6 +319,10 @@
       <div class="flex flex-col items-center w-full pt-16 mobile:pt-4">
         <form [formGroup]="emailForm" class="flex w-[100%] justify-center ml-2 mr-2">
           <div class="flex flex-col w-[100%] max-w-[600px] formulario">
+            <!-- Armadilha para robôs: invisível e fora da ordem de tabulação; pessoas não preenchem. -->
+            <input type="text" formControlName="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"
+                   class="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none">
+
             <div class="automaxia-input">
               <ion-item>
                 <ion-input label="Nome" label-placement="floating" color="light" type="text" id="nome"

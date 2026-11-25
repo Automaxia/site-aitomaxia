@@ -12,11 +12,15 @@ Automaxia
 * [Node](https://nodejs.org) 26 LTS (ver `.nvmrc`; o Angular 22 aceita ^22.22.3, ^24.15 ou >=26)
 * npm (o projeto usa só npm; o `package-lock.json` é a fonte das versões)
 
-Versões principais (atualizadas em 25/11/2026): Angular 22, Ionic 9 (pela entrada `@ionic/angular/lazy`,
-API de módulos), TypeScript 6, ESLint 10 (`eslint.config.js`), Swiper 14, Tailwind 3 + daisyUI 3.
+Versões principais (atualizadas em 25/11/2026): Angular 22 com componentes standalone (`bootstrapApplication`,
+rotas em `src/app/app.routes.ts`) e builder `@angular/build:application` (esbuild; saída em `www/`), Ionic 9
+standalone (`provideIonicAngular`), TypeScript 6, ESLint 10 (`eslint.config.js`), Swiper 14,
+Tailwind 3.4 + daisyUI 3.9.
 
-> O Ionic 9 avisa no console que o `IonicModule` está obsoleto. O site ainda usa NgModules; migrar para
-> componentes standalone (`provideIonicAngular`) é o próximo passo antes de uma versão do Ionic que remova a API.
+* **Ícones:** `<ion-icon name="...">` só aparece se o nome estiver registrado em `src/shared/icones.ts`.
+* **OnPush:** todos os componentes, menos a `HomePage` (o motivo está comentado nela). O lint cobra.
+* **Tailwind 4 não**: ele não funciona com Sass (`global.scss`) e usa `@layer` nativo, então o CSS do Ionic e as
+  regras globais passariam a vencer as classes utilitárias. Ficamos na linha 3.4, que segue mantida.
 
 # Desenvolvimento
 

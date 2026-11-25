@@ -9,9 +9,10 @@ import { SeoService } from '../shared/services/seo.service';
 register();
 
 @Component({
-	selector: 'app-root',
-	templateUrl: 'app.component.html',
-	styleUrls: ['app.component.scss'],
+    selector: 'app-root',
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.scss'],
+    standalone: false
 })
 export class AppComponent {
 	tipoDispositivo: string;

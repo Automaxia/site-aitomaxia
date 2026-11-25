@@ -4,9 +4,10 @@ import { menuConfig } from '../../constants/menu';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'automaxia-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+    selector: 'automaxia-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: false
 })
 export class NavbarComponent {
   isScrolled = false;

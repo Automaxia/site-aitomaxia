@@ -20,9 +20,10 @@ export class BrMaskModel {
 }
 
 @Directive({
-  // Nome histórico usado nos templates ([brmasker]); renomear só por estilo não compensa.
-  // eslint-disable-next-line @angular-eslint/directive-selector
-  selector: '[brmasker]'
+    // Nome histórico usado nos templates ([brmasker]); renomear só por estilo não compensa.
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[brmasker]',
+    standalone: false
 })
 export class BrMaskDirective implements OnInit {
   @Input() brmasker: BrMaskModel = new BrMaskModel();

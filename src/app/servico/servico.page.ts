@@ -3,9 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { SERVICOS, Servico, SERVICOS_POR_SLUG } from '../../shared/constants/servicos';
 
 @Component({
-  selector: 'automaxia-servico',
-  templateUrl: './servico.page.html',
-  styleUrls: ['./servico.page.scss'],
+    selector: 'automaxia-servico',
+    templateUrl: './servico.page.html',
+    styleUrls: ['./servico.page.scss'],
+    standalone: false
 })
 export class ServicoPage {
 

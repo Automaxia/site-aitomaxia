@@ -15,19 +15,23 @@
 
     <div class="flex justify-center wrapper-buttons">
       <button (click)="irParaSessao('servicos')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Serviços
       </button>
       <button (click)="irParaSessao('solucoes')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Soluções
       </button>
       <button (click)="irParaSessao('parceiros')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Parceiros
       </button>
+      <button (click)="irParaSessao('sobre')"
+              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
+        Sobre
+      </button>
       <button (click)="irParaSessao('contato')"
-              class="text-lg font-bold no-underline normal-case mobile:text-sm btn btn-link text-primary-3 hover:text-offwhite">
+              class="text-lg font-bold no-underline normal-case mobile:text-sm mobile:px-2 btn btn-link text-primary-3 hover:text-offwhite">
         Contato
       </button>
     </div>
@@ -111,7 +115,7 @@
         <!-- SERVIÇOS -->
         <div class="relative flex flex-row items-start self-stretch justify-start gap-12 shrink-0 mobile:mt-4">
           <ng-container>
-            <swiper-container [slidesPerView]="slidesPerView" autopaly="true" delay="3000" autoplay-delay="4000" loop="true" navigation="true" pagination="true" class="w-full desktop:h-[600px] mobile:h-[380px]">
+            <swiper-container [slidesPerView]="slidesPerView" autoplay-delay="4000" rewind="true" navigation="true" pagination="true" class="w-full desktop:h-[600px] mobile:h-[380px]">
 
               <swiper-slide *ngFor="let item of servicosInfo"
                             class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
@@ -151,10 +155,10 @@
         </video>
         <div class="relative z-20 w-full h-full bg-[rgba(19,10,6,0.80)]">
           <div class="flex flex-col pt-20">
-            <div class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">Founders<span class="animate-ping">|</span></div>
-            <div class="leading-6 mobile:hidden text-primary-3 mt-8 mobile:mt-2 text-center relative text-2xl mobile:text-[14px] px-2">
+            <h2 class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-2">Sobre a Automaxia<span class="animate-ping" aria-hidden="true">|</span></h2>
+            <p class="relative max-w-4xl px-8 mx-auto mt-8 text-2xl leading-relaxed text-center text-primary-3 mobile:mt-4 mobile:px-6 mobile:text-[15px] mobile:leading-6">
               Somos motivados e comprometidos em trazer resultados para o seu negócio. Com nossa vasta experiência trabalhando tanto como clientes quanto fornecedores, entendemos profundamente os desafios reais enfrentados e como superá-los. Estamos sempre buscando maneiras inovadoras de resolver problemas e não descansaremos até encontrarmos as melhores soluções para o sucesso do seu empreendimento. Trazemos uma mentalidade empreendedora e proativa para superar obstáculos e alcançar novas conquistas.
-            </div>
+            </p>
           </div>
         </div>
       </div>
@@ -195,7 +199,7 @@
     <div class="flex flex-row items-center justify-center w-full px-4 pt-10 pb-24 mobile:pt-2 mobile:px-0">
       <div class="mobile:grid mobile:grid-cols-1 mobile:w-full desktop:flex desktop:w-full">
         <div class="w-full mt-4 desktop:hidden">
-          <swiper-container class="solucoes-swiper-mobile" autopaly="true" delay="3000" autoplay-delay="3000" loop="true" slides-per-view="1" navigation="true" pagination="true" style="padding-bottom: 60px; height: 540px;">
+          <swiper-container class="solucoes-swiper-mobile" autoplay-delay="3000" rewind="true" slides-per-view="1" navigation="true" pagination="true" style="padding-bottom: 60px; height: 540px;">
 
             <swiper-slide *ngFor="let item of solucoesInfo" class="flex items-center justify-center px-8 bg-center bg-cover mobile:px-4">
               <ion-card class="bg-black max-w-[360px] max-h-[470px] w-[360px] h-[470px] ">
@@ -217,7 +221,7 @@
 
         <!-- Desktop Swiper -->
         <div class="w-full mobile:hidden">
-          <swiper-container class="solucoes-swiper" [slidesPerView]="slidesPerViewSolucoes" autopaly="true" delay="3000" autoplay-delay="4000" loop="true" navigation="true" pagination="true" style="padding-bottom: 70px; height: 690px;">
+          <swiper-container class="solucoes-swiper" [slidesPerView]="slidesPerViewSolucoes" autoplay-delay="4000" rewind="true" navigation="true" pagination="true" style="padding-bottom: 70px; height: 690px;">
 
             <swiper-slide *ngFor="let item of solucoesInfo" class="flex items-center justify-center px-4 bg-center bg-cover">
               <ion-card class="bg-black max-w-[380px] max-h-[500px] w-[380px] h-[500px] bg-cover" [ngClass]="item.bgImg">
@@ -279,7 +283,7 @@
           </ion-col>
         </ion-row>
         <div class="desktop:hidden">
-          <swiper-container [slidesPerView]="1" autopaly="true" delay="3000" autoplay-delay="3000" loop="true" navigation="true" pagination="true" class="w-full">
+          <swiper-container [slidesPerView]="1" autoplay-delay="3000" rewind="true" navigation="true" pagination="true" class="w-full">
 
             <swiper-slide *ngFor="let item of clientesInfo" class="flex flex-col items-center justify-center px-8 text-center">
               <ion-card class="bg-[#130A06] w-[360px] mobile:w-[300px] justify-center items-center flex flex-col">
@@ -301,18 +305,18 @@
 
   <!-- contato -->
   <ng-container #paginaContato>
-    <div class="carousel-item h-[140%] flex flex-col content-center justify-center" #contato>
+    <div class="flex flex-col content-center justify-center h-auto min-h-full carousel-item" #contato>
       <div class="flex flex-col pt-20">
         <div class="relative mb-4 text-5xl font-bold text-center text-primary-3 mobile:text-3xl mobile:mt-4">
-          Contato<span class="animate-ping">|</span>
+          Contato<span class="animate-ping" aria-hidden="true">|</span>
         </div>
-        <div class="leading-6 text-primary-3 mt-4 text-center relative text-2xl mobile:text-[14px] px-2 mobile:hidden">
+        <p class="relative max-w-3xl px-6 mx-auto mt-4 text-2xl leading-relaxed text-center text-primary-3 mobile:mt-1 mobile:text-[15px] mobile:leading-6">
           Quer entender como podemos ajudar? Precisa de apoio para escalar
           seu negócio? Fale conosco, estamos prontos para ajudar.
-        </div>
+        </p>
       </div>
 
-      <div class="flex flex-col items-center w-full pt-20 mobile:pt-1 desktop:h-2/3">
+      <div class="flex flex-col items-center w-full pt-16 mobile:pt-4">
         <form [formGroup]="emailForm" class="flex w-[100%] justify-center ml-2 mr-2">
           <div class="flex flex-col w-[100%] max-w-[600px] formulario">
             <div class="automaxia-input">
@@ -345,15 +349,14 @@
         </form>
       </div>
 
-      <div class="flex items-start justify-center w-full py-12 pb-8 mt-32 bg-grayscale-1 mobile:flex-col mobile:items-center">
+      <div class="flex items-start justify-center w-full py-12 pb-8 mt-16 bg-grayscale-1 mobile:flex-col mobile:items-center">
         <div class="inline-flex flex-col items-start justify-start gap-6">
           <div class="inline-flex items-center justify-start gap-4">
             <div class="relative w-10 h-10"></div>
             <div
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="location-fill" class="text-[32px] mr-2"></ion-icon>
-              <a href="" target=""
-                 class="hover:underline hover:text-secondary-0">Brasília, Distrito Federal, Brasil.</a>
+              <span>Brasília, Distrito Federal, Brasil.</span>
             </div>
           </div>
 
@@ -382,6 +385,15 @@
               class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
               <ion-icon name="shield-checkmark-outline" class="text-[32px] mr-2"></ion-icon>
               <a routerLink="/privacidade" class="hover:underline hover:text-secondary-0">Política de Privacidade</a>
+            </div>
+          </div>
+
+          <div class="inline-flex items-center justify-start gap-4">
+            <div class="relative w-10 h-10"></div>
+            <div
+              class="flex items-center text-grayscale-3 text-base font-normal font-['Roboto'] leading-relaxed tracking-tight">
+              <ion-icon name="document-text-outline" class="text-[32px] mr-2"></ion-icon>
+              <a routerLink="/termos" class="hover:underline hover:text-secondary-0">Termos de Uso</a>
             </div>
           </div>
         </div>

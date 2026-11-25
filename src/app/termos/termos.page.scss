@@ -1,11 +1,2 @@
-h2{
-    font-size: 30px;
-    padding-bottom: 20px;
-}
-
-p{
-    padding-bottom: 10px;
-    span{
-        text-align: justify;
-    }
-}
+// Mesmo visual da Política de Privacidade (cabeçalho fixo, coluna de leitura, títulos e listas).
+@import '../privacidade/privacidade.page';

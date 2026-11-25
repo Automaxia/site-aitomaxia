@@ -5,7 +5,6 @@ declare const window;
 
 export type BreakPointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
 export const BREAKPOINT = { XS: 'xs', SM: 'sm', MD: 'md', LG: 'lg', XL: 'xl', XXL: 'xxl' };
 
 @Injectable({ providedIn : 'root' })

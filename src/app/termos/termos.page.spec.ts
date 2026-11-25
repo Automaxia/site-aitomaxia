@@ -1,17 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
+import { provideIonicAngular } from '@ionic/angular';
 import { TermosPage } from './termos.page';
 
 describe('TermosPage', () => {
-  let component: TermosPage;
   let fixture: ComponentFixture<TermosPage>;
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TermosPage],
+      providers: [provideRouter([]), provideIonicAngular()],
+    }).compileComponents();
     fixture = TestBed.createComponent(TermosPage);
-    component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('cria a página', () => {
+    expect(fixture.componentInstance).toBeTruthy();
   });
 });

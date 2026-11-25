@@ -1,50 +1,24 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { BreakPointType, ResponsiveService } from '../shared/services/responsive.service';
-import { ROUTE } from '../shared/constants/route';
-import { Router } from '@angular/router';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { IonApp, IonRouterOutlet } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
+import { CookieBannerComponent } from '../shared/components/cookie-banner/cookie-banner.component';
+import { registrarIcones } from '../shared/icones';
 import { AnalyticsService } from '../shared/services/analytics.service';
 import { SeoService } from '../shared/services/seo.service';
 
 register();
+registrarIcones();
 
 @Component({
-    selector: 'app-root',
-    templateUrl: 'app.component.html',
-    styleUrls: ['app.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [IonApp, IonRouterOutlet, CookieBannerComponent],
 })
 export class AppComponent {
-	private responsiveService = inject(ResponsiveService);
-	private router = inject(Router);
-
-	tipoDispositivo: string;
-
-	constructor() {
-		const responsiveService = this.responsiveService;
-		const analytics = inject(AnalyticsService);
-		const seo = inject(SeoService);
-
-		responsiveService.$mediaBreakpoint.subscribe(this.verificarDispositivo.bind(this));
-		analytics.iniciar();
-		seo.iniciar();
-	}
-
-	inicio() {
-		this.router.navigateByUrl(`/${ROUTE.HOME}`);
-	}
-
-	verificarDispositivo(breakpoint: BreakPointType) {
-		if (['xs', 'sm'].includes(breakpoint)) {
-			this.tipoDispositivo = 'mobile';
-			console.log('dispositivo: ', this.tipoDispositivo);
-		} else if (breakpoint === 'md') {
-			this.tipoDispositivo = 'tablet';
-			console.log('dispositivo: ', this.tipoDispositivo);
-		} else {
-			this.tipoDispositivo = 'desktop';
-			console.log('dispositivo: ', this.tipoDispositivo);
-		}
-	}
+  constructor() {
+    inject(AnalyticsService).iniciar();
+    inject(SeoService).iniciar();
+  }
 }

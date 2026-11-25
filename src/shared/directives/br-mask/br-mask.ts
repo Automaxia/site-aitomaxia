@@ -23,7 +23,6 @@ export class BrMaskModel {
     // Nome histórico usado nos templates ([brmasker]); renomear só por estilo não compensa.
     // eslint-disable-next-line @angular-eslint/directive-selector
     selector: '[brmasker]',
-    standalone: false
 })
 export class BrMaskDirective implements OnInit {
   private controlContainer = inject(FormGroupDirective, { optional: true, host: true, skipSelf: true });

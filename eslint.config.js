@@ -16,11 +16,8 @@ module.exports = tseslint.config(
       // Prefixos reais do projeto: automaxia-* (e app-root/app-home); a diretiva histórica [brmasker].
       '@angular-eslint/component-selector': ['error', { type: 'element', prefix: ['app', 'automaxia'], style: 'kebab-case' }],
       '@angular-eslint/directive-selector': ['error', { type: 'attribute', prefix: ['app', 'automaxia', 'br'], style: 'camelCase' }],
-      // O site usa NgModules; migrar para standalone é reestruturação à parte.
-      '@angular-eslint/prefer-standalone': 'off',
-      // Angular 22 mudou o padrão para OnPush; a migração oficial marcou os componentes como Eager
-      // para manter o comportamento. Passar para OnPush exige revisar cada componente.
-      '@angular-eslint/prefer-on-push-component-change-detection': 'off',
+      // Todos os componentes são OnPush, menos a HomePage (exceção comentada no próprio arquivo).
+      '@angular-eslint/prefer-on-push-component-change-detection': 'error',
     },
   },
   {

@@ -1,13 +1,14 @@
 import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { IonContent } from '@ionic/angular';
 import { SERVICOS, Servico, SERVICOS_POR_SLUG } from '../../shared/constants/servicos';
 
 @Component({
     selector: 'automaxia-servico',
     templateUrl: './servico.page.html',
     styleUrls: ['./servico.page.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [IonContent, RouterLink],
 })
 export class ServicoPage {
 
@@ -17,8 +18,8 @@ export class ServicoPage {
   constructor() {
     const route = inject(ActivatedRoute);
 
-    // A rota pai (definida em app-routing) tem o slug como path.
-    const slug = route.snapshot.parent?.routeConfig?.path ?? '';
+    // Cada serviço tem a própria rota (app.routes.ts) com o slug como path.
+    const slug = route.snapshot.routeConfig?.path ?? '';
     this.servico = SERVICOS_POR_SLUG[slug] ?? SERVICOS[0];
     this.outros = SERVICOS.filter(s => s.slug !== this.servico.slug);
   }

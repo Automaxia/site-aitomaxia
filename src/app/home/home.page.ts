@@ -1,13 +1,16 @@
-import { Component, ElementRef, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild, inject, ChangeDetectionStrategy } from '@angular/core';
+import { NgClass } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonIcon, IonInput,
+  IonItem, IonRow, IonText, LoadingController, ToastController,
+} from '@ionic/angular';
+import { BrMaskDirective } from '../../shared/directives/br-mask/br-mask';
 import { EmailService } from '../../shared/services/email.service';
 import { AnalyticsService } from '../../shared/services/analytics.service';
 import { SERVICOS } from '../../shared/constants/servicos';
 import { BreakPointType, ResponsiveService } from "../../shared/services/responsive.service";
-
-// ✅ ADICIONE estas importações do Ionic:
-import { ToastController, LoadingController } from '@ionic/angular/lazy';
 
 function formatPhoneNumber(phoneNumber: any) {
   // Remover todos os caracteres não numéricos do número
@@ -30,8 +33,17 @@ function formatPhoneNumber(phoneNumber: any) {
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
+    // Eager de propósito: a página muda estado depois de await (envio do formulário) e por assinatura
+    // (breakpoints). Com OnPush cada um desses pontos precisaria de markForCheck/signals.
+    // eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
     changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+    imports: [
+      NgClass, RouterLink, ReactiveFormsModule, BrMaskDirective,
+      IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonIcon, IonInput,
+      IonItem, IonRow, IonText,
+    ],
+    // <swiper-container> e <swiper-slide> são web components do Swiper.
+    schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePage {
   private readonly router = inject(Router);

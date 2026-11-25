@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'automaxia-termos',
-  templateUrl: './termos.page.html',
-  styleUrls: ['./termos.page.scss'],
+    selector: 'automaxia-termos',
+    templateUrl: './termos.page.html',
+    styleUrls: ['./termos.page.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
-export class TermosPage implements OnInit {
+export class TermosPage {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

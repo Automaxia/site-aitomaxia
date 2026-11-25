@@ -1,4 +1,4 @@
-import { LoadingController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular/lazy';
 import { from, Observable, Subscription, throwError } from 'rxjs';
 import { inject } from './inject';
 import { Mutex } from './mutex';

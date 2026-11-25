@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
-import { ScrollDetail } from '@ionic/angular';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { ScrollDetail } from '@ionic/angular/lazy';
 import { menuConfig } from '../../constants/menu';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'automaxia-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss'],
+    selector: 'automaxia-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class NavbarComponent {
+  private router = inject(Router);
+
   isScrolled = false;
   initialPosition;
   activeRoute;
 
-  constructor(private router: Router) {
+  constructor() {
+    const router = this.router;
+
     this.activeRoute = router.url;
   }
 

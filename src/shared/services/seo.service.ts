@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+
+import { Injectable, DOCUMENT, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -33,11 +33,11 @@ for (const s of SERVICOS) {
 /** Mantém título, descrição, canônico e Open Graph de acordo com a rota atual. */
 @Injectable({ providedIn: 'root' })
 export class SeoService {
+  private readonly router = inject(Router);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly document = inject<Document>(DOCUMENT);
 
-  constructor(private readonly router: Router,
-              private readonly title: Title,
-              private readonly meta: Meta,
-              @Inject(DOCUMENT) private readonly document: Document) { }
 
   iniciar(): void {
     this.router.events

@@ -84,7 +84,7 @@ export class AnalyticsService {
     const w = window as any;
     w.dataLayer = w.dataLayer || [];
     // O gtag.js exige o objeto `arguments`, não um array.
-    // eslint-disable-next-line prefer-rest-params
+     
     w.dataLayer.push(arguments);
   }
 

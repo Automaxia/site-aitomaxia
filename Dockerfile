@@ -1,17 +1,15 @@
-FROM node:18.17.1 AS build
+### STAGE 1: build ###
+# Node 26 LTS ("Lithium"); o Angular 22 aceita ^22.22 || ^24.15 || >=26. Antes era 18.17.1 (fim de suporte).
+FROM node:26 AS build
 
 # Chromium headless para o pré-render (scripts/prerender.mjs).
-RUN apt-get update  && apt-get install -y --no-install-recommends chromium  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends chromium && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY tsconfig.json ./
-COPY package*.json ./
-RUN npm cache clean --force
-RUN npm install --force
+COPY package.json package-lock.json ./
+# Exatamente as versões do package-lock.json
+RUN npm ci --no-audit --no-fund
 COPY . .
-COPY . /assets/
-
-RUN npm install -g @angular/cli
 
 RUN npm run build
 RUN node scripts/prerender.mjs

@@ -1,5 +1,5 @@
 import { inject } from './inject';
-import { ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular/lazy';
 
 const toasts: any[] = [];
 

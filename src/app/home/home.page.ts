@@ -224,6 +224,9 @@ export class HomePage {
 
       const assunto = `Contato via site - ${dadosCliente.nome}`;
 
+      // Lead também ao Radar, em paralelo e sem esperar (não atrasa nem derruba o envio).
+      this.analytics.lead(dadosCliente);
+
       // O conteúdo do e-mail é montado pelo template no EmailJS.
       const resultado = await this.email.envioemail(assunto, dadosCliente);
 

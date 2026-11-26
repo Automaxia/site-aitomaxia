@@ -6,9 +6,14 @@ export type EscolhaCookies = 'aceito' | 'recusado';
 const GA_ID = 'G-1LVHJNKCHZ';
 const CHAVE_ESCOLHA = 'automaxia_cookies_analise';
 
+/** Radar: medição própria (repositório Automaxia/radar), servida pelo mesmo domínio em /r/. */
+const RADAR_SITE = 'pk_Zo-DeUAocsiNXfcIGQPIpBgG';
+const RADAR_BASE = '/r';
+
 /**
- * Google Analytics 4 condicionado ao consentimento (LGPD).
- * O script do GA só é carregado depois que o visitante aceita cookies de análise.
+ * Google Analytics 4 e Radar condicionados ao consentimento (LGPD).
+ * Os scripts de medição só são carregados depois que o visitante aceita cookies de análise.
+ * O lead do formulário vai ao Radar mesmo sem esse aceite (é o pedido de contato; ver `lead`).
  */
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService {
@@ -21,6 +26,7 @@ export class AnalyticsService {
     const escolha = this.lerEscolha();
     if (escolha === 'aceito') {
       this.carregarGa();
+      this.carregarRadar();
     } else if (escolha === null) {
       this.mostrarBanner$.next(true);
     }
@@ -30,6 +36,7 @@ export class AnalyticsService {
     this.salvarEscolha('aceito');
     this.mostrarBanner$.next(false);
     this.carregarGa();
+    this.carregarRadar();
   }
 
   recusar(): void {
@@ -39,6 +46,7 @@ export class AnalyticsService {
       this.gtag('consent', 'update', { analytics_storage: 'denied' });
       this.apagarCookiesGa();
     }
+    this.revogarRadar();
   }
 
   /** Reabre o banner para o visitante mudar a escolha. */
@@ -50,6 +58,71 @@ export class AnalyticsService {
   evento(nome: string, parametros: Record<string, unknown> = {}): void {
     if (this.carregado && this.lerEscolha() === 'aceito') {
       this.gtag('event', nome, parametros);
+    }
+  }
+
+  /**
+   * Lead do formulário de contato ao Radar, em paralelo ao EmailJS. Vai mesmo sem o aceite de
+   * medição (o visitante pediu o contato); com o aceite, leva o identificador da visita, que liga
+   * o lead à navegação. Nunca falha o formulário: erro aqui é silencioso.
+   */
+  lead(campos: { nome: string; email: string; telefone: string }): void {
+    try {
+      const corpo = JSON.stringify({
+        site_key: RADAR_SITE,
+        vid: (window as any).radar?.vid || undefined,
+        campos,
+        pagina: location.pathname,
+        idioma: (document.documentElement.lang || 'pt-BR').slice(0, 10),
+        aceite_formulario: new Date().toISOString(),
+      });
+      fetch(`${RADAR_BASE}/v1/lead`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+        body: corpo,
+        keepalive: true,
+        credentials: 'omit',
+      }).catch(() => undefined);
+    } catch {
+      // Sem Radar o formulário segue pelo EmailJS.
+    }
+  }
+
+  private radarCarregado = false;
+
+  private carregarRadar(): void {
+    if (this.radarCarregado || (window as any).radar?.v) {
+      return;
+    }
+    this.radarCarregado = true;
+    const script = document.createElement('script');
+    script.defer = true;
+    script.src = `${RADAR_BASE}/radar.js`;
+    script.setAttribute('data-site', RADAR_SITE);
+    document.head.appendChild(script);
+  }
+
+  /**
+   * "Recusar" depois de ter aceito: o Radar apaga a navegação deste navegador no servidor.
+   * Se o script não estiver na página (outra visita), pede a exclusão direto pelo identificador salvo.
+   */
+  private revogarRadar(): void {
+    const radar = (window as any).radar;
+    if (radar?.revogar) {
+      radar.revogar();
+      return;
+    }
+    try {
+      const vid = localStorage.getItem('radar_vid');
+      if (vid) {
+        navigator.sendBeacon?.(`${RADAR_BASE}/v1/revogar`, JSON.stringify({ site_key: RADAR_SITE, vid }));
+        localStorage.removeItem('radar_vid');
+        localStorage.removeItem('radar_vid_t');
+      }
+      sessionStorage.removeItem('radar_sid');
+      sessionStorage.removeItem('radar_sid_t');
+    } catch {
+      // Armazenamento bloqueado: não há identificador a apagar.
     }
   }
 

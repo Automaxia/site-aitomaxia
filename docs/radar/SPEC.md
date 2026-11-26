@@ -4,12 +4,13 @@
 > de "visitante → contato → comercial" do HubSpot, para os sites **balance.ia.br** (`site-balance`)
 > e **automaxia.com.br** (`site-aitomaxia`).
 >
-> **Cópia idêntica** em `site-balance/docs/radar/` e `site-aitomaxia/docs/radar/`. Ao mudar, mudar
-> as duas. Quando o repositório do Radar existir (T01), ele passa a ser a fonte da verdade e estas
-> cópias viram um ponteiro.
+> **Cópia idêntica** em `radar/docs/` (fonte da verdade desde 26/11/2026), `site-balance/docs/radar/`
+> e `site-aitomaxia/docs/radar/`. Ao mudar, mudar as três; quando o repositório do Radar tiver
+> remoto, as cópias dos sites viram um ponteiro (T23).
 >
 > Trio de documentos: **SPEC** (o quê e por quê) · [SDD](SDD.md) (como) · [TASKS](TASKS.md) (o que fazer, em que ordem).
-> Criado em 10/11/2026. Estado: **proposta, nada implementado**.
+> Criado em 10/11/2026. Estado: **F1 do núcleo implementada e testada localmente (26/11/2026)**;
+> nada no ar. Ver TASKS §Estado atual.
 
 ---
 
@@ -57,7 +58,7 @@ integração com o ecossistema e para servir aos dois sites com um código só.
 - Disparo de e-mail em massa e newsletters.
 - Publicidade, *remarketing*, integração com Google Ads/Meta.
 - Enriquecimento por serviços de terceiros (Clearbit, Apollo etc.).
-- Identificar empresa pelo IP (no cluster Balance o IP real nem chega, ver SDD §9).
+- Identificar empresa pelo IP (exigiria guardar ou consultar o IP do visitante, contra o RNF-04).
 - Rastrear o visitante entre sites diferentes (cada site é um universo separado).
 - Mapa de calor, gravação de sessão.
 
@@ -104,7 +105,8 @@ integração com o ecossistema e para servir aos dois sites com um código só.
 
 ### Comercial
 - **RF-13 · Aviso de lead novo.** E-mail ao comercial do site, com dados do lead, origem e páginas
-  vistas, e link para o lead no painel. Opcional: mensagem num canal do Teams.
+  vistas, e link para o lead no painel. Lead que já existia e envia o formulário de novo também gera
+  aviso ("Lead enviou de novo"). Opcional: mensagem num canal do Teams.
 - **RF-14 · Aviso de retorno.** No máximo um aviso por lead a cada 24 horas.
 - **RF-15 · Mini CRM.** Status do lead (novo, em contato, qualificado, descartado, cliente),
   responsável, anotações com data e autor, histórico de mudanças de status.

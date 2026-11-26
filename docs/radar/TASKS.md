@@ -1,7 +1,8 @@
 # Radar · TASKS (o que fazer, em que ordem)
 
 > Tarefas para entregar a [SPEC](SPEC.md) conforme o [SDD](SDD.md).
-> **Cópia idêntica** em `site-balance/docs/radar/` e `site-aitomaxia/docs/radar/`: as seções
+> **Cópia idêntica** em `radar/docs/` (fonte da verdade), `site-balance/docs/radar/` e
+> `site-aitomaxia/docs/radar/`: as seções
 > **Núcleo** valem para o repositório do Radar; as seções **site-balance** e **site-aitomaxia**
 > valem para cada site.
 > Criado em 10/11/2026. Tamanho: **P** até 1 dia · **M** 2 a 3 dias · **G** 4 a 5 dias.
@@ -11,8 +12,17 @@
 
 ## Estado atual
 
-Nada implementado. Próximo passo: **F0**, responder D1 a D4 da SPEC §11. Sem a D2 (onde roda e
-quem é o dono dos dados) não dá para criar a infraestrutura.
+**26/11/2026 — F1 do núcleo implementada e testada localmente**, no repositório `D:\Automaxia\radar`
+(só local, **sem remoto** no GitHub). Nada no ar.
+
+- Testado: 39 testes (regras puras + API contra Postgres 16 real + worker de avisos com envio falso)
+  e o fluxo de ponta a ponta no Chrome pela página de desenvolvimento (`RADAR_PAGINA_DEV=true`):
+  nada antes do aceite, `pageview` com UTM, `pushState`, evento `cta`, lead ligado ao visitante,
+  revogação apagando a navegação e mantendo o lead. Imagem Docker conferida (usuário 10001, 145 MB).
+- Seguido com os padrões recomendados enquanto a F0 não é decidida: nome Radar (D1), uma instância
+  por dono (D2), SMTP configurável (D4). Nada disso ficou preso no código.
+- **Próximo passo:** decidir D2 e D4 e criar o remoto do repositório; aí T09 (deploy da instância do
+  Balance) e B01 a B04 (ligar no balance.ia.br em paralelo ao HubSpot).
 
 ---
 
@@ -29,16 +39,16 @@ quem é o dono dos dados) não dá para criar a infraestrutura.
 
 | # | Tarefa | Tam. | Estado | Depende | Aceite |
 |---|---|---|---|---|---|
-| T01 | Criar o repositório `radar` (backend + frontend), CI de testes em PR, padrão do `turing-backend` | P | ⬜ | T00a | PR roda testes; `main` protegida |
-| T02 | Schema `radar` e migrations (Alembic): `sites`, `visitantes`, `sessoes`, `eventos` (partição mensal), `leads`, `envios`, `avisos`, `auditoria` | M | ⬜ | T01 | `alembic upgrade head` num banco vazio; partição do mês corrente e do próximo criadas |
-| T03 | `POST /r/v1/e`: validação, chave do site, origem, lista de eventos, normalização de página e *referrer*, redução de *user agent*, robôs, sessão (30 min), UTM e canal | G | ⬜ | T02 | Testes de contrato do SDD §11 passando; nenhum IP gravado |
-| T04 | `POST /r/v1/lead`: lead por e-mail normalizado, envio, vínculo com `vid`, domínio da empresa, aviso na *outbox* | M | ⬜ | T02 | Lead com e sem `vid`; reenvio do mesmo e-mail cai no mesmo lead |
-| T05 | `POST /r/v1/revogar`: apaga visitante, sessões e eventos; desfaz vínculo; idempotente | P | ⬜ | T02 | Lead permanece; navegação some; segunda chamada não erra |
-| T06 | `radar.js` (≤ 3 KB gz): `vid`/`sid`, `pageview` (inclui `pushState`), fila em lote, `sendBeacon`, `track`/`lead`/`revogar`, silêncio com `navigator.webdriver` e `prerender` | G | ⬜ | T03 | Tamanho medido no CI; nenhuma exceção sobe para a página |
-| T07 | Limites: corpo 8 KB, 20 eventos/lote, taxa por `site_key` e por `vid` (nunca por IP) | P | ⬜ | T03 | `413` e `429` testados |
-| T08 | `radar-worker`: *outbox* de avisos por SMTP (lead novo), 5 tentativas com espera crescente | M | ⬜ | T04, T00d | Aviso chega em < 2 min; SMTP fora do ar não perde aviso |
+| T01 | Criar o repositório `radar` (backend + frontend), CI de testes em PR, padrão do `turing-backend` | P | 🟨 local, sem remoto; CI escrito | T00a | PR roda testes; `main` protegida |
+| T02 | Schema `radar` e migrations (SQL numerado): `sites`, `visitantes`, `sessoes`, `eventos` (partição mensal), `leads`, `envios`, `avisos`, `auditoria` | M | ✅ `001_inicial.sql` | T01 | `radar.cli migrar` num banco vazio; partição do mês corrente e dos próximos criadas |
+| T03 | `POST /r/v1/e`: validação, chave do site, origem, lista de eventos, normalização de página e *referrer*, redução de *user agent*, robôs, sessão (30 min), UTM e canal | G | ✅ | T02 | Testes de contrato do SDD §11 passando; nenhum IP gravado |
+| T04 | `POST /r/v1/lead`: lead por e-mail normalizado, envio, vínculo com `vid`, domínio da empresa, aviso na *outbox* | M | ✅ | T02 | Lead com e sem `vid`; reenvio do mesmo e-mail cai no mesmo lead |
+| T05 | `POST /r/v1/revogar`: apaga visitante, sessões e eventos; desfaz vínculo; idempotente | P | ✅ | T02 | Lead permanece; navegação some; segunda chamada não erra |
+| T06 | `radar.js` (≤ 3 KB gz): `vid`/`sid`, `pageview` (inclui `pushState`), fila em lote, `sendBeacon`, `track`/`lead`/`revogar`, silêncio com `navigator.webdriver` e `prerender` | G | ✅ 2,3 KB gz | T03 | Tamanho medido no CI; nenhuma exceção sobe para a página |
+| T07 | Limites: corpo 8 KB, 20 eventos/lote, taxa por `site_key` e por `vid` (nunca por IP) | P | ✅ | T03 | `413` e `429` testados |
+| T08 | `radar-worker`: *outbox* de avisos por SMTP (lead novo), 5 tentativas com espera crescente | M | 🟨 testado com envio falso; falta SMTP real (D4) | T04, T00d | Aviso chega em < 2 min; SMTP fora do ar não perde aviso |
 | T09 | Imagem, Helm chart, CI de publicação (tag do SHA) e deploy da instância do Balance (schema no `postgres-dev`, role `radar_app`, pool 5) | M | ⬜ | T00b, T03 | `/health` e `/ready` verdes no cluster; role sem acesso fora do schema |
-| T10 | Observabilidade: logs estruturados, contadores aceitos/recusados por motivo, alerta de 24 h sem eventos por site | P | ⬜ | T09 | Alerta disparado num teste com site sem tráfego |
+| T10 | Observabilidade: logs estruturados, contadores aceitos/recusados por motivo, alerta de 24 h sem eventos por site | P | 🟨 `/metrics` com contadores; alerta depende do deploy | T09 | Alerta disparado num teste com site sem tráfego |
 
 ## F1 · site-balance
 

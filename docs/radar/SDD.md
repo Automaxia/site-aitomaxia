@@ -1,8 +1,9 @@
 # Radar · SDD (como)
 
 > Desenho técnico do que a [SPEC](SPEC.md) pede. Tarefas em [TASKS](TASKS.md).
-> **Cópia idêntica** em `site-balance/docs/radar/` e `site-aitomaxia/docs/radar/`.
-> Criado em 10/11/2026. Estado: **proposta**. As escolhas seguem o padrão do ecossistema Balance
+> **Cópia idêntica** em `radar/docs/` (fonte da verdade), `site-balance/docs/radar/` e
+> `site-aitomaxia/docs/radar/`. Criado em 10/11/2026. Estado: **F1 do núcleo implementada** em
+> `radar/backend` (26/11/2026), nada no ar. As escolhas seguem o padrão do ecossistema Balance
 > (FastAPI, PostgreSQL, Helm, GitHub Actions, registry Magalu) para o Radar caber no mesmo cluster
 > e na mesma rotina de operação.
 
@@ -43,8 +44,10 @@ terceiro. Bloqueadores de anúncio também tendem a ignorar caminhos do próprio
 ## 2. Script de coleta (`radar.js`)
 
 Servido pela `radar-api` em `/r/radar.js`, com `Cache-Control: public, max-age=3600`. Uma versão
-só, para todos os sites: atualizar o Radar não exige *rebuild* dos sites. Escrito em TypeScript,
-compilado para ES2018, no máximo 3 KB comprimido, sem dependências.
+só, para todos os sites: atualizar o Radar não exige *rebuild* dos sites. Escrito direto em
+JavaScript ES2018, sem etapa de build (26/11/2026: o script é pequeno e um build não compensava),
+no máximo 3 KB comprimido (hoje 2,3 KB, conferido no teste), sem dependências.
+`backend/src/radar/static/radar.js`.
 
 **Carregamento.** O site só injeta o script depois do aceite, com atributos:
 
@@ -159,8 +162,9 @@ envios           id, lead_id, campos jsonb, pagina, idioma, aceite_formulario, r
 anotacoes        id, lead_id, autor_id, texto, criado_em
 status_historico id, lead_id, de, para, autor_id, em
 
-avisos           id, site_id, lead_id, tipo (lead_novo|retorno), canal, estado
-                 (pendente|enviado|falhou), tentativas, enviado_em, erro   ← outbox
+avisos           id, site_id, lead_id, tipo (lead_novo|novo_envio|retorno), estado
+                 (pendente|enviado|falhou|sem_destino), tentativas, proxima_tentativa,
+                 enviado_em, erro   ← outbox
 usuarios         id, email, nome, papel (admin|comercial|leitura), sites uuid[],
                  senha_hash null, totp null, ativo           (login próprio, §7)
 auditoria        id, usuario_id, acao, alvo_tipo, alvo_id, detalhe jsonb, em
@@ -267,10 +271,12 @@ location /r/ {
 - **Chave pública do site** não é segredo (vai no HTML), como a do Web3Forms. A proteção real é o
   conjunto: domínio de origem conferido, páginas fora do site descartadas, lista fechada de
   eventos e de campos, limites de tamanho e de taxa.
-- **Limite de taxa sem IP.** No cluster Balance o IP do visitante não chega (o *load balancer*
-  entrega `172.18.48.130`/`172.18.49.2`, ver `CLAUDE.md` do ecossistema). Por isso o limite é por
-  `site_key` (teto global) e por `vid`, nunca por IP. Se o *proxy protocol* for ligado no futuro,
-  um limite por IP pode ser somado, sem guardar o IP.
+- **Limite de taxa sem IP.** O limite é por `site_key` (teto global) e por `vid`, nunca por IP: o
+  `vid` é aleatório e o atacante troca à vontade, mas o teto por site segura o volume. Desde
+  17/11/2026 o IP real chega ao cluster Balance (PROXY protocol no LB, `X-Forwarded-For` limpo pelo
+  Traefik, ver `CLAUDE.md` do ecossistema, T78); um limite **em memória** por IP pode ser somado se
+  aparecer abuso, lendo o XFF como os outros backends e **sem gravar** o IP. Na instância da
+  Automaxia, conferir antes se o proxy dela repassa o IP.
 - **Nada de IP no banco**, nem em log de aplicação (o log de acesso do nginx segue a política atual do site).
 - **Sem *fingerprinting*:** só o `vid` aleatório identifica o visitante.
 - **Painel:** CSP própria sem `'unsafe-inline'` em `script-src`, `frame-ancestors 'none'`, HSTS,
@@ -289,7 +295,9 @@ location /r/ {
   (mesmo PgBouncer), role própria `radar_app` com acesso só ao schema. Cuidado com as conexões: o
   Postgres já ficou sem *slots* uma vez (01/10/2026); pool pequeno (5) e `idle_session_timeout`.
 - **Automaxia (D2-a):** contêineres na infraestrutura da Automaxia, com Postgres próprio.
-- **Migrations** versionadas (Alembic), aplicadas por Job antes do rollout.
+- **Migrations** em SQL numerado (`backend/migrations/NNN_nome.sql`, padrão do Cockpit e do motor),
+  aplicadas por `python -m radar.cli migrar` num Job antes do rollout; um *advisory lock* impede duas
+  aplicações ao mesmo tempo.
 - Recursos iniciais: `radar-api` 100m/256Mi, `radar-worker` 50m/128Mi, `radar-web` 50m/64Mi.
 
 ## 11. Testes
